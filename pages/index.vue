@@ -1,5 +1,6 @@
 <template>
     <div>
+        <my-header></my-header>
         <b-container>
             <b-row>
                 <b-col cols="9">我占9</b-col>
@@ -9,8 +10,11 @@
     </div>
 </template>
 <script>
+    import myHeader from '../components/myHeader.vue'
     export default {
-
+        components:{
+            myHeader
+        }
     }
 </script>
 <style scoped>
