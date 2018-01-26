@@ -1,3 +1,4 @@
+/* ****************************公共样式***************************** */
 *{
     box-sizing: border-box;
 }
@@ -43,13 +44,35 @@ ul,ol,dl {
 
 @media (min-width:992px){
     .my-container {
-        width: 960px !important;
+        width: 960px;
     }
 }
 @media (max-width:1080px){
     .my-container {
-        width: 750px !important;
+        width: 750px;
     }
+}
+/*******************************首页布局*************************************/
+.index {
+    padding-top: 30px;
+}
+.index .main{
+    height: 1500px;
+    padding-right:0; 
+}
+.index .aside{
+    height: 500px;
+    padding: 0 0 0 4.16667%;
+}
+.index .main .banner img{
+    width: 100%;
+}
+.index .aside .board img{
+    width: 100%;
+    margin-bottom: 4.5px;
 }
 
 
+/* ****************************文章页面布局 ***********************************/
+
+/* ******************************用户页面********************************* */
