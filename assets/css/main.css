@@ -66,7 +66,157 @@ ul,ol,dl {
 }
 .index .main .banner img{
     width: 100%;
+    border-radius: 10px;
 }
+.index .main .banner{
+    margin-bottom: 35px;
+}
+.index .main .recommend-collection{
+    margin-bottom: 10px;
+}
+.index .main .recommend-collection a{
+    min-height: 32px;
+    display: inline-block;
+    margin: 0 18px 18px 0;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+.index .main .recommend-collection .more-hot-collection{
+    display: inline-block;
+    margin: 0 18px 18px 0;
+    line-height: 32px;
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: #787878 !important;
+}
+.index .main .recommend-collection a img{
+    width: 32px;
+    height: 32px;
+    vertical-align: bottom;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.index .main .recommend-collection a span{
+    line-height: 32px;
+    padding: 0 10px;
+    display: inline-block;
+    font-size: 14px;
+}
+.index .main .split-line{
+    margin: 0 0 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.note-list{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.note-list li{
+    position: relative;
+    width: 100%;
+    padding: 0 0 17px 0;
+    margin: 0 0 17px 0;
+    border-bottom: 1px solid #ccc;
+    word-wrap:break-word; /*自动换行*/ 
+}
+.note-list li.have-img>.wrap-img{
+    position: absolute;
+    top:50%;
+    right: 0;
+    margin-top: -60px;
+    width: 150px;
+    height: 120px;
+}
+.note-list li.have-img>.wrap-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+}
+.note-list li.have-img .content{
+    padding-right: 160px;
+}
+.note-list .author {
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+.note-list .author .avatar,.note-list .author .info{
+    display: inline-block;
+    vertical-align: middle;
+}
+.avatar{
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+.avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.note-list .author .avatar{
+    margin: 0 10px 0 0;
+}
+.note-list .author .info .time{
+    color: #969696;
+    padding-left: 5px;
+}
+.note-list .title{
+    font-size: 18px;
+    font-weight: 700;
+}
+.note-list .title:visited{
+    color: #969696 !important;
+}
+.note-list .abstract{
+    font-size: 13px;
+    line-height: 24px;
+    margin:  5px 0 13px 0;
+}
+.note-list .meta{
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+}
+.note-list .meta .collection-tag{
+    color: #ea6f5a !important;
+    border: #e1907f 1px solid;
+    padding: 5px;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: all ease-in .5s;
+}
+.note-list .meta .collection-tag:hover{
+    color: #ea6f5a !important;
+    background-color: #fef7f5;
+    border-color: #ec6179;
+}
+.note-list .meta a,.note-list .meta span{
+    margin-right: 10px;
+    color: #b4b4b4 !important;
+}
+.note-list .meta a:hover{
+    color: #787878 !important;
+}
+@media (max-width:1080px){
+    .note-list li.have-img .wrap-img{
+        margin-top: -58px;
+        bottom: 40px;
+        width: 125px;
+        height: 100px;
+    }
+    .note-list li.have-img .content{
+        padding-right: 135px;
+    }
+}
+
+
+
 .index .aside .board img{
     width: 100%;
     margin-bottom: 4.5px;
