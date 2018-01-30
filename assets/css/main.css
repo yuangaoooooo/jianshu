@@ -64,6 +64,8 @@ ul,ol,dl {
     height: 500px;
     padding: 0 0 0 4.16667%;
 }
+
+/* 左边 占8 */
 .index .main .banner img{
     width: 100%;
     border-radius: 10px;
@@ -184,12 +186,18 @@ ul,ol,dl {
     font-weight: 400;
 }
 .note-list .meta .collection-tag{
+    display: inline-block;
     color: #ea6f5a !important;
-    border: #e1907f 1px solid;
+    border: #f1907f 1px solid;
     padding: 5px;
     border-radius: 4px;
     margin-right: 10px;
     transition: all ease-in .5s;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis; /*变成...*/
+    white-space: nowrap;  /*不换行*/
+    vertical-align: middle; /*和其他元素垂直居中对齐*/
 }
 .note-list .meta .collection-tag:hover{
     color: #ea6f5a !important;
@@ -215,14 +223,128 @@ ul,ol,dl {
     }
 }
 
+.index .main .load-more{
+    display: block;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    background: #a5a5a5;
+    border-radius: 20px;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    font-size: 15px;
+}
 
-
+/* 右边 占4 */
+.index .aside .board{
+    margin-bottom: 6px;
+}
 .index .aside .board img{
     width: 100%;
     margin-bottom: 4.5px;
 }
+.aside .download{
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height:70px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    padding:7px 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.aside .download img{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 8px;
+}
+.aside .download span{
+    font-size: 13px;
+    color: #969696 !important;
+}
+.aside .download .erweima{
+    position: absolute;
+    top:-208px;
+    left: 10px;
+    width: 200px;
+    height: 200px;  
+    border: 1px solid #ccc;
+}
+.recommend-author{
+    margin: 30px 0 10px 0;
+    font-size: 13px;
+    text-align: center;
+}
+.recommend-author .title{
+    text-align: left;
+    color: #969696;
+}
+.recommend-author .title .page-change{
+    float: right;  
+}
+.recommend-author .title .page-change:hover{
+    color: #787878 !important;
+}
+.recommend-author .title .page-change i{
+    transition: ease .2s;
+}
+.recommend-author .list{
+    margin-bottom: 20px;
+    text-align: left;
+}
+.recommend-author .list li{
+    margin-top: 15px;
+}
+.recommend-author .list li .avatar{
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+}
+.recommend-author .list li .follow{
+    float: right;
+    font-size: 13px;
+    color: #42c02e !important;
+    margin-top: 5px;
+}
+.recommend-author .list li .name{
+    display: block;
+    padding-top: 5px;
+    margin-right: 60px;
+    font-size: 15px;
+}
+.recommend-author .list li p{
+    color: #969696;
+    font-size: 12px;
+}
+.recommend-author .find-more{
+    display: block;
+    width: 100%;
+    padding:  7px 7px 7px 12px;
+    color: #787878 !important;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    font-size: 13px;
+    border-radius: 10px
+}
+.recommend-author .find-more i{
+    margin-left: 8px;
+}
 
-
+.foot{
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+    font-size: 14px;
+    background-color: #ea6f5a;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    text-align: center;
+}
 /* ****************************文章页面布局 ***********************************/
 
 /* ******************************用户页面********************************* */
