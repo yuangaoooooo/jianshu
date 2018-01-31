@@ -273,6 +273,8 @@ ul,ol,dl {
     width: 200px;
     height: 200px;  
     border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,.1);
 }
 .recommend-author{
     margin: 30px 0 10px 0;
@@ -346,5 +348,266 @@ ul,ol,dl {
     text-align: center;
 }
 /* ****************************文章页面布局 ***********************************/
+.note {
+    position: relative;
+    padding-top: 10px;
+}
+.note .post{
+    width: 620px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.note .post .article .title{
+    font-size: 34px;
+    font-weight: 700;
+    margin:  20px 0 0;
+    word-break: break-all;
+}
+.note .post .article .author {
+    margin: 30px 0 40px 0;
+}
+.note .post .article .author .avatar{
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.note .post .article .author .info{
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.note .post .article .author .info .name{
+    font-size: 16px;
+    margin-right: 5px;
+}
+.note .post .article .follow{
+    color: #ffffff !important;
+    font-size: 12px;
+    border-radius: 20px;
+    background: #42c02e !important;
+    padding: 1px 10px 1px 7px;
+}
+.note .post .article .following {
+    background:#fff;
+    color:#969696;
+    border:1px solid #ccc;
+    font-size:12px;
+    border-radius: 20px;
+    padding:1px 8px 1px 6px;
+}
+.note .post .article .author .info .btn-sm span{
+    margin-left: 5px;
+}
 
+.note .post .article .author .meta{
+    margin-right: 5px;
+    font-size: 12px;
+    color: #969696;
+}
+.note .post .article .author .meta span{
+    margin-right: 5px;
+}
+.note .post .article .show-content{
+    font-size: 16px;
+    font-weight: 400;
+    word-break: break-all;
+    color: #2f2f2f;
+    line-height: 1.7;
+}
+.note .post .article .show-content p {
+    margin: 0 0 20px;
+}
+.note .post .article .show-foot{
+    margin-bottom: 30px;
+}
+.note .post .article .show-foot .notebook{
+    font-size: 12px;
+    color: #c8c8c8 !important;
+}
+.note .post .article .show-foot .notebook i{
+    margin-right: 5px;
+}
+.note .post .article .show-foot .copyright{
+    float: right;
+    font-size: 12px;
+    color: #c8c8c8;
+}
+.note .post .article .follow-detail{
+    padding: 20px;
+    background: #f8f8f8;
+    border: 1px solid #e1e1e1;
+    border-radius: 6px;
+}
+.note .post .article .follow-detail .avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+    float: left;
+}
+.note .post .article .follow-detail .btn{
+    float: right;
+    box-shadow: none;
+    width: 100px;
+    padding: 8px 0;
+    font-size: 16px;
+}
+.note .post .article .follow-detail .btn span{
+    margin-left: 5px;
+}
+.note .post .article .follow-detail .following{
+    background: none;
+}
+.note .post .article .follow-detail .title{
+    font-size: 17px;
+    line-height: 1.8;
+    margin-right: 5px;
+}
+.note .post .article .follow-detail .info>i{
+    color: #3194d0;
+    font-size: 15px;
+}
+.note .post .article .follow-detail .info p{
+    color: #969696;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+.note .post .article .follow-detail .signature{
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #969696;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.note .post .article .meta-bottom{
+    margin: 40px 0 80px;
+}
+.note .post .article .meta-bottom .like{
+    display: inline-block;
+    color: #ea6f5a;
+}
+.note .post .article .meta-bottom .share-group{
+    float: right;
+}
+.note .post .article .meta-bottom .like-group{
+    border: 1px solid #ea6f5a;
+    padding: 13px 0 15px;
+    border-radius: 40px;
+}
+.note .post .article .meta-bottom .like-group:hover{
+    background: #fef7f5;
+}
+.note .post .article .meta-bottom .like .active{
+    background: #ea6f5a;
+    color: white !important;
+}
+.note .post .article .meta-bottom .like .active .modal-wrap{
+    border-color: white;
+}
+.note .post .article .meta-bottom .like-group .btn-like{
+    font-size: 19px;
+    display: inline-block;   
+    
+}
+.note .post .article .meta-bottom .like-group .btn-like a{
+    padding: 18px 15px 18px 30px;   
+}
+.note .post .article .meta-bottom .like-group .btn-like a i{
+    margin-right: 5px;
+}
+.note .post .article .meta-bottom .like-group .modal-wrap{
+    font-size: 18px;
+    display: inline-block;
+    border-left: 1px solid #ea6f5a;
+}
+.note .post .article .meta-bottom .like-group .modal-wrap a{
+    padding: 18px 30px 18px 17px; 
+}
+.note .post .article .meta-bottom  .share-group a{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    margin-left: 5px;
+}
+.note .post .article .meta-bottom  .share-group a i{
+    font-size: 22px;
+}
+.note .post .article .meta-bottom  .share-group a:hover{
+    background: #f8f8f8;
+}
+.weibo{
+    color: #e05244;
+}
+.weixin{
+    color: rgb(33, 119, 33);
+}
+.qq{
+    color: rgb(26, 201, 231);
+}
+.note .post .article .meta-bottom  .share-group .more-share{
+    position: relative;
+    width: auto;
+    line-height: 42px;
+    font-size: 14px;
+    padding: 4px 18px;
+    border-radius: 30px
+}
+.note .post .article .meta-bottom  .share-group .more-share .share-list{
+    position: absolute;
+    top:-181px;
+    left:-40px;
+    width: 170px;
+    height: 170px;
+    border: 1px solid #787878;
+    border-radius: 6px;
+    background: #fff;
+    padding: 1px;
+    box-shadow: 0 3px 2px 2px #dcdcdc;
+}
+.note .post .article .meta-bottom  .share-group .more-share .share-list .sanjiao{
+    position: absolute;
+    top: 168px;
+    left: 73px;
+}
+.note .post .article .meta-bottom  .share-group .more-share .share-list li{
+    height: 33px;
+    line-height: 33px;
+    text-align: left;
+}
+.note .post .article .meta-bottom  .share-group .more-share .share-list li:hover{
+    background: #f0f0f0;
+}
+.note .post .article .meta-bottom  .share-group .more-share .share-list li i{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.note .post .article .meta-bottom  .share-group .more-share .share-list li span{
+    font-size: 15px;
+}
+.qqkj{
+    color: #fec801;
+}
+.twitter{
+    color: #00aaec;
+}
+.facebook{
+    color: #4460a0;
+}
+.google{
+    color: #fa3f2d;
+}
+.douban{
+    color: green;
+}
 /* ******************************用户页面********************************* */
