@@ -7,6 +7,13 @@ html,body{
     background: #fff;
     color:#333;
 }
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
 #__nuxt{
     height: 100%;
 }
@@ -610,4 +617,5 @@ ul,ol,dl {
 .douban{
     color: green;
 }
+
 /* ******************************用户页面********************************* */

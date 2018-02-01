@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div @click.stop="listShow=false">
         <my-header></my-header>
-        <div class="note" @click.stop="listShow=false">
+        <div class="note">
             <!-- 文章区域 -->
             <div class="post">
                 <!-- 正文 -->
@@ -67,15 +67,15 @@
                     <!-- 喜欢 分享 -->
                     <div class="meta-bottom">
                         <div class="like">
-                            <div class="btn like-group" :class="activeObj">
-                                <div class="btn-like" @click="isActive">
+                            <div class="btn like-group" :class="{active:active_like}">
+                                <div class="btn-like" @click="isLike">
                                     <a href="javascript:void(0)">
                                         <i class="fa fa-heart-o"></i>
                                         <span>喜欢</span>
                                     </a>
                                 </div>
                                 <div class="modal-wrap">
-                                    <a href="javascript:void(0)" ref="num">88</a>
+                                    <a href="javascript:void(0)">{{like_number}}</a>
                                 </div>
                             </div>
                         </div>
@@ -121,6 +121,8 @@
                         </div>
                     </div>
                 </div>
+                <!-- 回复组件 -->
+                <my-comment></my-comment>
                 
             </div>
             <!-- 悬浮的操作框 -->
@@ -132,6 +134,7 @@
 </template>
 <script>
     import myHeader from '../../components/myHeader.vue'
+    import myComment from '../../components/myComment.vue'
     export default {
         name:'',
         data () {
@@ -144,14 +147,13 @@
                     'fa-plus-square-o':true,
                     'fa-check':false
                 },
-                activeObj:{
-                    'active':false
-                },
+                active_like:false,
+                like_number:108,
                 listShow:false
             }
         },
         components:{
-            myHeader
+            myHeader,myComment
         },
         methods:{
             isFollow:function(){
@@ -185,13 +187,14 @@
                     this.$refs.icon2.className = 'fa fa-check';
                 }
             },
-            isActive:function(){
-                this.activeObj.active = !this.activeObj.active;
-                if(this.activeObj.active == true){
-                    this.$refs.num.innerHTML = parseInt(this.$refs.num.innerHTML) +1;
+            isLike:function(){
+                this.active_like = !this.active_like;
+                if(this.active_like == true){
+                    ++this.like_number;
                 }else{
-                    this.$refs.num.innerHTML = parseInt(this.$refs.num.innerHTML) -1;
+                    --this.like_number;
                 }    
+                //将最新的like_number 值传到数据库
             }
         }
     }
