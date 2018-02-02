@@ -1,6 +1,7 @@
 <template>
     <div>
         <div id="comment-list" class="comment-list">
+            <!-- 提交留言 -->
             <form class="new-comment">
                 <nuxt-link class="avatar" to="/u/123">
                     <img src="../assets/img/default-avatar.jpg" alt="">
@@ -31,11 +32,81 @@
                     </div>
                 </transition>
             </form>
+            <!-- 留言列表 -->
+            <div id="normal-comment-list" class="normal-comment-list">
+                <!-- 留言的排序 -->
+                <div class="top-title">
+                    <span>3条评论</span>
+                    <a href="JavaScript:;" class="author-only">
+                        只看作者
+                    </a>
+                    <div class="pull-right">
+                        <a class="active" href="JavaScript:;">
+                            按喜欢排序
+                        </a>
+                        <a href="JavaScript:;">
+                            按时间正序
+                        </a>
+                        <a href="JavaScript:;">
+                            按时间倒序
+                        </a>
+                    </div>
+                </div>
+                <!-- 留言的正文 -->
+                <!-- 加载效果 -->
+                <div class="comment-placeholder">
+                    <div class="author">
+                        <div class="avatar"></div>
+                        <div class="info">
+                            <div class="name"></div>
+                            <div class="meta"></div>
+                        </div>    
+                    </div>
+                    <div class="title"></div>
+                    <div class="title animated-delay"></div>
+                    <div class="tool-group">
+                        <i class="fa fa-thumbs-up"></i>
+                        <div class="zan"></div>
+                        <i class="fa fa-comment"></i>
+                        <div class="zan"></div>
+                    </div>
+                </div>
+                <!-- 留言 -->
+                <div :id="'comment-'+comment.id" v-for="(comment,index) in comments"
+                 class="comment">
+                    <div class="comment-content">
+                        <div class="author">
+                            <nuxt-link class="avatar" to="/u/123">
+                                <img :src="comment.user.avatar" alt="">
+                            </nuxt-link>
+                            <div class="info">
+                                <nuxt-link class="name" to="/u/123">
+                                    {{comment.user.nick_name}}
+                                </nuxt-link>
+                                <div class="meta">
+                                    <span>
+                                        {{comment.floor}}楼
+                                        {{comment.create_at | time}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-warp">
+
+                        </div>
+                    </div>
+                    <div class="sub-comment-list">
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </template>
 <script>
     import vueEmoji from '~/components/vueEmoji'
+  
     export default {
         name:'myComment',
         data () {
@@ -43,6 +114,135 @@
                 send:false,
                 showEmoji:false,
                 value:'',
+                comments:[
+                    {
+                        id:19935725,
+                        floor:2,
+                        liked:true,
+                        likes_count:20,
+                        note_id:2054702,
+                        user_id:6780849,
+                        user:{
+                            avatar:'/default-avatar.jpg',
+                            id:6780849,
+                            is_author:false,
+                            nick_name:'南飞雨燕',
+                            badgue:false,
+                        },
+                        create_at:"2018-01-25T05:54:25.000+08:00",
+                        children_count:3,
+                        compiled_content:"上阙景色单调，化用太多，味同嚼蜡",
+                        children:[
+                            {
+                                id:20116563,
+                                user_id:2604707,
+                                user:{
+                                    id:2604707,
+                                    nick_name:'boom',
+                                },
+                                parent_id:19935725,
+                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                compiled_content:"哈哈哈哈哈哈",
+                            },
+                            {
+                                id:20113413,
+                                user_id:2604708,
+                                user:{
+                                    id:2604708,
+                                    nick_name:'huaxia',
+                                },
+                                parent_id:19935725,
+                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                compiled_content:"六六六",
+                            },
+                            {
+                                id:20113418,
+                                user_id:2604709,
+                                user:{
+                                    id:2604709,
+                                    nick_name:'阿斯蒂芬',
+                                },
+                                parent_id:19935725,
+                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                compiled_content:"阿萨德感受到分公司的发给我",
+                            },
+                        ]
+                    },
+                    {
+                        id:19935726,
+                        floor:3,
+                        liked:true,
+                        likes_count:10,
+                        note_id:2054702,
+                        user_id:6784849,
+                        user:{
+                            avatar:'/default-avatar.jpg',
+                            id:6784849,
+                            is_author:false,
+                            nick_name:'空间',
+                            badgue:false,
+                        },
+                        create_at:"2018-01-25T05:56:25.000+08:00",
+                        children_count:3,
+                        compiled_content:"来看看",
+                        children:[
+                            {
+                                id:20116563,
+                                user_id:2604777,
+                                user:{
+                                    id:2604777,
+                                    nick_name:'发v',
+                                },
+                                parent_id:19935726,
+                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                compiled_content:"突然不是的",
+                            },
+                            {
+                                id:20113413,
+                                user_id:2604728,
+                                user:{
+                                    id:2604728,
+                                    nick_name:'胜多负少的',
+                                },
+                                parent_id:19935726,
+                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                compiled_content:"呢染头发",
+                            },
+                            {
+                                id:20113418,
+                                user_id:2604719,
+                                user:{
+                                    id:2604719,
+                                    nick_name:'居然敢和你',
+                                },
+                                parent_id:19935726,
+                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                compiled_content:"的积分工会那个号你电脑",
+                            },
+                        ]
+                    },
+                    {
+                        id:19935727,
+                        floor:4,
+                        liked:true,
+                        likes_count:1,
+                        note_id:2054702,
+                        user_id:6781849,
+                        user:{
+                            avatar:'/default-avatar.jpg',
+                            id:6781849,
+                            is_author:false,
+                            nick_name:'吃辣的',
+                            badgue:false,
+                        },
+                        create_at:"2018-01-25T07:54:25.000+08:00",
+                        children_count:0,
+                        compiled_content:"我的",
+                        children:[
+                        
+                        ]
+                    },
+                ]  
             }
         },
         components:{
@@ -56,6 +256,18 @@
             sendData:function(){
                 console.log('发送value值数据给后端');
                 
+            }
+        },
+        filters: {
+            time: function (value) {
+                var d = new Date(value);
+                var year = d.getFullYear();
+                var month = d.getMonth() + 1;
+                var day = d.getDate()<10 ? '0' + d.getDate() : '' + d.getDate();
+                var hour = d.getHours();
+                var minutes = d.getMinutes();
+                var seconds = d.getSeconds();
+                return  year+ '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
             }
         }
     }
@@ -75,7 +287,6 @@
     }
    .note .post .comment-list{
        padding-top: 20px;
-       margin-bottom: 200px;  /*yihuishan*/
    } 
    .note .post .comment-list .new-comment{
        position: relative;
@@ -156,6 +367,7 @@
        width: 402px;
        height: 208px;
        padding: 10px;
+       background: #fff;
        border: 1px solid #d9d9d9;
        border-radius: 4px;
        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1)
@@ -172,5 +384,48 @@
        left: 50px;
        top:-1px;
        transform: translate3d(0,-50%,0) rotate(45deg);
+   }
+
+   .note .post .comment-list .normal-comment-list{
+       margin-top: 30px;
+   }
+   .note .post .comment-list .top-title{
+       padding-bottom: 20px; 
+       border-bottom: 1px solid #f0f0f0;
+   }
+   .note .post .comment-list .top-title span{
+       font-size: 17px;
+       font-weight: 700;
+   }
+   .note .post .comment-list .top-title .author-only{
+        font-size: 12px;
+        padding: 4px 8px;
+        border: 1px solid #e1e1e1;
+        border-radius: 12px;
+        color: #969696 !important;
+        margin-left: 10px;
+   }
+   .note .post .comment-list .top-title .pull-right a{
+        margin-left: 10px;
+        font-size: 12px;
+        color: #969696 !important;
+   }
+   .note .post .comment-list .top-title .pull-right a.active{
+        color: #2f2f2f !important;
+   }
+   .note .post .comment-list .comment{
+       padding: 20px 0 30px 0;
+       border: 1px solid #f0f0f0;
+   }
+   .note .post .comment-list .comment .info{
+        display: inline-block;
+        vertical-align: middle;
+   }
+   .note .post .comment-list .comment .info .name{
+       font-size: 15px;
+   }
+   .note .post .comment-list .comment .info .meta{
+       font-size: 12px;
+       color: #969696 !important;
    }
 </style>

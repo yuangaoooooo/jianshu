@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 回复组件 -->
+                <!-- 回复留言组件 -->
                 <my-comment></my-comment>
                 
             </div>
