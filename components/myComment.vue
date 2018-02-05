@@ -41,13 +41,13 @@
                         只看作者
                     </a>
                     <div class="pull-right">
-                        <a class="active" href="JavaScript:;" @click="likeSort">
+                        <a class="active" href="JavaScript:;">
                             按喜欢排序
                         </a>
-                        <a href="JavaScript:;" @click="timeSort">
+                        <a href="JavaScript:;">
                             按时间正序
                         </a>
-                        <a href="JavaScript:;" @click="untimeSort">
+                        <a href="JavaScript:;">
                             按时间倒序
                         </a>
                     </div>
@@ -126,13 +126,13 @@
                         <div class="comment-warp">
                             <p>{{comment.compiled_content}}</p>
                             <div class="tool-group">
-                                <a href="javascript:;" @click="zan(comment)" class="zan" :class="{active:comment.isActive}">
-                                    <i class="fa" :class="comment.zanObj"></i>
+                                <a href="javascript:;" class="zan">
+                                    <i class="fa fa-thumbs-o-up"></i>
                                     <span>{{comment.likes_count}}人点赞</span>
                                 </a>
                                 <a href="javascript:;">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="showForm(comment)">回复</span>
+                                    <span @click="">回复</span>
                                 </a>
                             </div>
                         </div>
@@ -153,46 +153,19 @@
                                 <span>{{subComment.create_at | formatDate}}</span>
                                 <a href="javascript:;">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="showFormNew(comment,subComment)">回复</span>
+                                    <span @click="">回复</span>
                                 </a>
                             </div>
                         </div>
                         <div class="more-comment">
                             <a class="add-comment-btn" href="javascript:;">
                                 <i class="fa fa-pencil"></i>
-                                <span @click="showForm(comment)">添加新评论</span>
+                                <span @click="">添加新评论</span>
                             </a>
                         </div>
                     </div>
                     <!-- 二级回复表单 -->
-                    <transition name="fade">
-                        <form v-if="comment.FShow" class="second-comment" >
-                            <textarea placeholder="写下你的评论"
-                                v-model="t_value" 
-                            >
-                            </textarea>
-                            <transition name="fade">
-                                <div class="write-function-block  clearfix">
-                                    <div class="emoji-modal-warp">
-                                        <a href="javascript:;" class="emoji" @click="showE(comment)">
-                                            <i class="fa fa-smile-o"></i>
-                                        </a>
-                                        <transition name="fade">
-                                            <div v-if="comment.EShow" class="emoji-modal arrow-up">
-                                                <!-- emoji组件 -->
-                                                <vue-emoji @select="selectEmoji"></vue-emoji>
-                                            </div>
-                                        </transition>
-                                    </div>
-                                    <div class="hint">
-                                        Ctrl+Enter 发表
-                                    </div>
-                                    <a @click="sendData" class="btn btn-send" href="javascript:;">发送</a>
-                                    <a @click="closeForm(comment)" class="cancel" href="javascript:void(0)">取消</a>
-                                </div>
-                            </transition>
-                        </form>
-                    </transition>
+                    
                 </div>
 
             </div>
@@ -208,18 +181,10 @@
                 send:false,
                 showEmoji:false,
                 value:'',
-                t_value:'',
-                
+                t_value:'', 
                 comments:[
                     {
                         id:19935725,
-                        FShow:false,
-                        EShow:false,
-                        isActive:false,
-                        zanObj:{
-                            'fa-thumbs-o-up':true,
-                            'fa-thumbs-up':false
-                        },
                         floor:2,
                         liked:true,
                         likes_count:20,
@@ -238,7 +203,6 @@
                         children:[
                             {
                                 id:20116563,
-                                EShow:false,
                                 user_id:2604707,
                                 user:{
                                     id:2604707,
@@ -250,7 +214,6 @@
                             },
                             {
                                 id:20113413,
-                                EShow:false,
                                 user_id:2604708,
                                 user:{
                                     id:2604708,
@@ -262,7 +225,6 @@
                             },
                             {
                                 id:20113418,
-                                EShow:false,
                                 user_id:2604709,
                                 user:{
                                     id:2604709,
@@ -276,13 +238,6 @@
                     },
                     {
                         id:19935726,
-                        FShow:false,
-                        EShow:false,
-                        isActive:false,
-                        zanObj:{
-                            'fa-thumbs-o-up':true,
-                            'fa-thumbs-up':false
-                        },
                         floor:3,
                         liked:true,
                         likes_count:10,
@@ -301,7 +256,6 @@
                         children:[
                             {
                                 id:20116563,
-                                EShow:false,
                                 user_id:2604777,
                                 user:{
                                     id:2604777,
@@ -313,7 +267,6 @@
                             },
                             {
                                 id:20113413,
-                                EShow:false,
                                 user_id:2604728,
                                 user:{
                                     id:2604728,
@@ -325,7 +278,6 @@
                             },
                             {
                                 id:20113418,
-                                EShow:false,
                                 user_id:2604719,
                                 user:{
                                     id:2604719,
@@ -339,13 +291,6 @@
                     },
                     {
                         id:19935727,
-                        FShow:false,
-                        EShow:false,
-                        isActive:false,
-                        zanObj:{
-                            'fa-thumbs-o-up':true,
-                            'fa-thumbs-up':false
-                        },
                         floor:4,
                         liked:true,
                         likes_count:1,
@@ -366,14 +311,7 @@
                         ]
                     },
                     {
-                        id:19935728,
-                        FShow:false,
-                        EShow:false,
-                        isActive:false,
-                        zanObj:{
-                            'fa-thumbs-o-up':true,
-                            'fa-thumbs-up':false
-                        },
+                        id:19935728, 
                         floor:5,
                         liked:true,
                         likes_count:5,
@@ -408,84 +346,11 @@
             sendData:function(){
                 console.log('发送value值数据给后端');     
             },
-            zan:function(comment){
-                comment.isActive = !comment.isActive;
-                comment.zanObj['fa-thumbs-o-up'] = !comment.zanObj['fa-thumbs-o-up'];
-                comment.zanObj['fa-thumbs-up'] = !comment.zanObj['fa-thumbs-up'];
-                if(comment.isActive == true){
-                    ++comment.likes_count;
-                }else{
-                    --comment.likes_count;
-                }  
-            },
-            showForm:function(comment){
-                comment.FShow = ! comment.FShow;
-                comment.EShow = false;
-                this.t_value = '';  
-            },
-            closeForm:function(comment){
-                comment.FShow = false;
-            },
-            showE:function(comment){
-                comment.EShow =!comment.EShow; 
-            },
-            showFormNew:function(comment,subComment){
-                comment.FShow = ! comment.FShow;
-                comment.EShow = false;   
-                this.t_value = '@'+subComment.user.nick_name;  
-            },
-            likeSort:function(){
-                // 定制排序标准
-                function compare(property){
-                    return function(obj1,obj2){
-                        var value1 = obj1[property];
-                        var value2 = obj2[property];
-                        return value2 - value1;     // 降序
-                    }
-                }             
-                var sortObj = this.comments.sort(compare("likes_count"));
-                this.comments = sortObj;
-            },
-            timeSort:function(){
-                function compare(property){
-                    return function(obj1,obj2){
-                        var value1 = obj1[property];
-                        var value2 = obj2[property];
-                        return value1 - value2;     
-                    }
-                }
-                for(var i = 0;i< this.comments.length;i++){
-                    // console.log(this.comments[i].create_at); 
-                    var aaa =  this.comments[i].create_at;
-                    var ccc = new Date(aaa).getTime()  
-                    // console.log(ccc); 
-                    this.comments[i]["timedata"]=ccc;                                        
-                }  
-               
-                var sortObj = this.comments.sort(compare("timedata"));
-                    // console.log(sortObj);                   
-                    this.comments = sortObj;               
-            },
-            untimeSort:function(){
-                function compare(property){
-                    return function(obj1,obj2){
-                        var value1 = obj1[property];
-                        var value2 = obj2[property];
-                        return value2 - value1;     
-                    }
-                }
-                for(var i = 0;i< this.comments.length;i++){
-                    // console.log(this.comments[i].create_at); 
-                    var aaa =  this.comments[i].create_at;
-                    var ccc = new Date(aaa).getTime()  
-                    // console.log(ccc); 
-                    this.comments[i]["timedata"]=ccc;                                        
-                }  
-               
-                var sortObj = this.comments.sort(compare("timedata"));
-                    // console.log(sortObj);              
-                    this.comments = sortObj;  
-            }
+
+          
+   
+  
+            
         },
        
     }
