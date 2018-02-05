@@ -7,7 +7,7 @@
                     <img src="../assets/img/default-avatar.jpg" alt="">
                 </nuxt-link>
                 <textarea  @focus="send=true"  placeholder="写下你的评论"
-                    v-model="value"
+                    v-model="commentData"
                 >
 
                 </textarea>
@@ -158,14 +158,41 @@
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a class="add-comment-btn" href="javascript:;">
+                            <a class="add-comment-btn" href="javascript:;" @click="showSubCommentForm(index)">
                                 <i class="fa fa-pencil"></i>
-                                <span @click="">添加新评论</span>
+                                <span>添加新评论</span>
                             </a>
                         </div>
                     </div>
                     <!-- 二级回复表单 -->
-                    
+                    <transition :duration="200" name="fade">
+                        <form v-if="activeIndex.includes(index)"  class="second-comment" >
+                            <textarea v-focus  placeholder="写下你的评论"
+                                v-model="value" 
+                            >
+                            </textarea>
+                            <transition name="fade">
+                                <div class="write-function-block  clearfix">
+                                    <div class="emoji-modal-warp">
+                                        <a href="javascript:;" class="emoji" @click="showSubEmoji(index)">
+                                            <i class="fa fa-smile-o"></i>
+                                        </a>
+                                        <transition :duration="200" name="fade">
+                                            <div v-if="emojiIndex.includes(index)" class="emoji-modal arrow-up">
+                                                <!-- emoji组件 -->
+                                                <vue-emoji :index="index" ref="emoji" @select="selectSubEmoji"></vue-emoji>
+                                            </div>
+                                        </transition>
+                                    </div>
+                                    <div class="hint">
+                                        Ctrl+Enter 发表
+                                    </div>
+                                    <a @click="sendSubCommentData(index)" class="btn btn-send" href="javascript:;">发送</a>
+                                    <a @click="closeSubComment(index)" class="cancel" href="javascript:void(0)">取消</a>
+                                </div>
+                            </transition>
+                        </form>
+                    </transition>
                 </div>
 
             </div>
@@ -180,8 +207,8 @@
             return {
                 send:false,
                 showEmoji:false,
+                commentData:'',
                 value:'',
-                t_value:'', 
                 comments:[
                     {
                         id:19935725,
@@ -332,25 +359,68 @@
                         ]
                     },
                 ],
+                activeIndex:[],
+                emojiIndex:[],
                
             }
         },
         components:{
             vueEmoji
         },
+        directives: {
+            "focus":{
+                 // 钩子函数：bind inserted update componentUpdated unbind
+                 // 钩子函数的参数：el，binding，vnode，oldVnode
+                bind:function(el,binding,vnode,oldVnode){
+                    console.log(el);
+                    el.focus();
+                },
+                inserted:function(el){
+                    el.focus();
+                }
+            }  
+        },
         methods:{
             selectEmoji:function(code){
                 this.showEmoji = false;
-                this.value += code;
+                this.commentData += code;
             },
             sendData:function(){
                 console.log('发送value值数据给后端');     
+            },   
+            showSubCommentForm:function(value){
+                console.log(this.activeIndex);
+                if(this.activeIndex.includes(value)){
+                    let index = this.activeIndex.indexOf(value);
+                    this.activeIndex.splice(index,1);
+                }else{
+                    this.activeIndex.push(value);
+                }
             },
-
-          
-   
-  
-            
+            sendSubCommentData:function(value){
+                let index = this.activeIndex.indexOf(value);
+                this.activeIndex.splice(index,1);
+            },
+            closeSubComment:function(value){
+                let index = this.activeIndex.indexOf(value);
+                this.activeIndex.splice(index,1);
+            },
+            showSubEmoji:function(value){
+                if(this.emojiIndex.includes(value)){
+                    let index = this.emojiIndex.indexOf(value);
+                    this.emojiIndex.splice(index,1);
+                    this.emojiIndex = [];
+                }else{
+                    this.emojiIndex = [];
+                    this.emojiIndex.push(value);
+                }
+            },
+            selectSubEmoji:function(code){
+                console.log(this);
+                console.log(this.$refs.emoji);
+                
+                
+            },
         },
        
     }
@@ -612,8 +682,7 @@
    /* 二级回复表单样式 */
    .note .post .comment-list .comment .second-comment{
         border-left: 2px solid #d9d9d9;
-       margin-top: 10px;
-       padding: 5px 0 5px 20px;
+       padding: 15px 0 5px 20px;
    }
    .note .post .comment-list .comment .second-comment textarea{
         width: 100%;
