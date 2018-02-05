@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="comment-list" class="comment-list">
-            <!-- 提交留言 -->
+            <!-- 一级提交留言表单 -->
             <form class="new-comment">
                 <nuxt-link class="avatar" to="/u/123">
                     <img src="../assets/img/default-avatar.jpg" alt="">
@@ -28,7 +28,7 @@
                             Ctrl+Enter 发表
                         </div>
                         <a @click="sendData" class="btn btn-send" href="javascript:;">发送</a>
-                        <a @click="send_one=false" class="cancel" href="javascript:void(0)">取消</a>
+                        <a @click="send=false" class="cancel" href="javascript:void(0)">取消</a>
                     </div>
                 </transition>
             </form>
@@ -41,13 +41,13 @@
                         只看作者
                     </a>
                     <div class="pull-right">
-                        <a class="active" href="JavaScript:;">
+                        <a class="active" href="JavaScript:;" @click="likeSort">
                             按喜欢排序
                         </a>
-                        <a href="JavaScript:;">
+                        <a href="JavaScript:;" @click="timeSort">
                             按时间正序
                         </a>
-                        <a href="JavaScript:;">
+                        <a href="JavaScript:;" @click="untimeSort">
                             按时间倒序
                         </a>
                     </div>
@@ -74,11 +74,43 @@
                 <!-- 留言 -->
                 <div :id="'comment-'+comment.id" v-for="(comment,index) in comments"
                  class="comment">
+                    <!-- 一级回复内容 -->
                     <div class="comment-content">
                         <div class="author">
                             <nuxt-link class="avatar" to="/u/123">
-                                <img :src="comment.user.avatar" alt="">
+                                <img :src="comment.user.avatar" alt="" :id="'user_popover-'+comment.id" variant="primary">
                             </nuxt-link>
+                            <b-popover :target="'user_popover-'+comment.id" placement="top" triggers="hover">
+                                <div class="user_popover">
+                                    <nuxt-link class="avatar" to="/u/123">
+                                        <img :src="comment.user.avatar" alt="">
+                                    </nuxt-link>
+                                    <div class="info">
+                                        <nuxt-link class="name" to="/u/123">
+                                            {{comment.user.nick_name}}
+                                        </nuxt-link>
+                                        <div class="meta">
+                                            <span>
+                                              爱上的卡夫卡来阿里速度快
+                                            </span>
+                                        </div>    
+                                    </div>
+                                    <div class="pop_foot">
+                                        <div>
+                                            
+                                        </div>
+                                        <div class="btn btn-success guanzhu">
+                                                关注
+                                        </div>
+                                        <div class="btn btn-success cancel">
+                                            取消
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </b-popover>
+
+
                             <div class="info">
                                 <nuxt-link class="name" to="/u/123">
                                     {{comment.user.nick_name}}
@@ -86,18 +118,81 @@
                                 <div class="meta">
                                     <span>
                                         {{comment.floor}}楼
-                                        {{comment.create_at | time}}
+                                        {{comment.create_at | formatDate}}
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="comment-warp">
-
+                            <p>{{comment.compiled_content}}</p>
+                            <div class="tool-group">
+                                <a href="javascript:;" @click="zan(comment)" class="zan" :class="{active:comment.isActive}">
+                                    <i class="fa" :class="comment.zanObj"></i>
+                                    <span>{{comment.likes_count}}人点赞</span>
+                                </a>
+                                <a href="javascript:;">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span @click="showForm(comment)">回复</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="sub-comment-list">
-
+                    <!-- 二级回复 -->
+                    <div v-if="comment.children.length != 0" class="sub-comment-list">
+                        <div v-for="(subComment,index) in comment.children" :id="'comment-'+subComment.id" class="sub-comment">
+                            <p>
+                                <nuxt-link to="/u/123">
+                                    {{subComment.user.nick_name}}     
+                                </nuxt-link>
+                                :
+                                <span v-html="subComment.compiled_content">
+                               
+                                </span>
+                            </p>
+                            <div class="sub-tool-group">
+                                <span>{{subComment.create_at | formatDate}}</span>
+                                <a href="javascript:;">
+                                    <i class="fa fa-comment-o"></i>
+                                    <span @click="showFormNew(comment,subComment)">回复</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="more-comment">
+                            <a class="add-comment-btn" href="javascript:;">
+                                <i class="fa fa-pencil"></i>
+                                <span @click="showForm(comment)">添加新评论</span>
+                            </a>
+                        </div>
                     </div>
+                    <!-- 二级回复表单 -->
+                    <transition name="fade">
+                        <form v-if="comment.FShow" class="second-comment" >
+                            <textarea placeholder="写下你的评论"
+                                v-model="t_value" 
+                            >
+                            </textarea>
+                            <transition name="fade">
+                                <div class="write-function-block  clearfix">
+                                    <div class="emoji-modal-warp">
+                                        <a href="javascript:;" class="emoji" @click="showE(comment)">
+                                            <i class="fa fa-smile-o"></i>
+                                        </a>
+                                        <transition name="fade">
+                                            <div v-if="comment.EShow" class="emoji-modal arrow-up">
+                                                <!-- emoji组件 -->
+                                                <vue-emoji @select="selectEmoji"></vue-emoji>
+                                            </div>
+                                        </transition>
+                                    </div>
+                                    <div class="hint">
+                                        Ctrl+Enter 发表
+                                    </div>
+                                    <a @click="sendData" class="btn btn-send" href="javascript:;">发送</a>
+                                    <a @click="closeForm(comment)" class="cancel" href="javascript:void(0)">取消</a>
+                                </div>
+                            </transition>
+                        </form>
+                    </transition>
                 </div>
 
             </div>
@@ -106,7 +201,6 @@
 </template>
 <script>
     import vueEmoji from '~/components/vueEmoji'
-  
     export default {
         name:'myComment',
         data () {
@@ -114,9 +208,18 @@
                 send:false,
                 showEmoji:false,
                 value:'',
+                t_value:'',
+                
                 comments:[
                     {
                         id:19935725,
+                        FShow:false,
+                        EShow:false,
+                        isActive:false,
+                        zanObj:{
+                            'fa-thumbs-o-up':true,
+                            'fa-thumbs-up':false
+                        },
                         floor:2,
                         liked:true,
                         likes_count:20,
@@ -135,41 +238,51 @@
                         children:[
                             {
                                 id:20116563,
+                                EShow:false,
                                 user_id:2604707,
                                 user:{
                                     id:2604707,
                                     nick_name:'boom',
                                 },
                                 parent_id:19935725,
-                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                create_at:"2018-01-26T06:54:25.000+08:00",
                                 compiled_content:"哈哈哈哈哈哈",
                             },
                             {
                                 id:20113413,
+                                EShow:false,
                                 user_id:2604708,
                                 user:{
                                     id:2604708,
                                     nick_name:'huaxia',
                                 },
                                 parent_id:19935725,
-                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                create_at:"2018-01-29T05:59:25.000+08:00",
                                 compiled_content:"六六六",
                             },
                             {
                                 id:20113418,
+                                EShow:false,
                                 user_id:2604709,
                                 user:{
                                     id:2604709,
                                     nick_name:'阿斯蒂芬',
                                 },
                                 parent_id:19935725,
-                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                create_at:"2018-01-30T05:54:25.000+08:00",
                                 compiled_content:"阿萨德感受到分公司的发给我",
                             },
                         ]
                     },
                     {
                         id:19935726,
+                        FShow:false,
+                        EShow:false,
+                        isActive:false,
+                        zanObj:{
+                            'fa-thumbs-o-up':true,
+                            'fa-thumbs-up':false
+                        },
                         floor:3,
                         liked:true,
                         likes_count:10,
@@ -182,47 +295,57 @@
                             nick_name:'空间',
                             badgue:false,
                         },
-                        create_at:"2018-01-25T05:56:25.000+08:00",
+                        create_at:"2018-01-26T08:56:25.000+08:00",
                         children_count:3,
                         compiled_content:"来看看",
                         children:[
                             {
                                 id:20116563,
+                                EShow:false,
                                 user_id:2604777,
                                 user:{
                                     id:2604777,
                                     nick_name:'发v',
                                 },
                                 parent_id:19935726,
-                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                create_at:"2018-01-27T07:54:25.000+08:00",
                                 compiled_content:"突然不是的",
                             },
                             {
                                 id:20113413,
+                                EShow:false,
                                 user_id:2604728,
                                 user:{
                                     id:2604728,
                                     nick_name:'胜多负少的',
                                 },
                                 parent_id:19935726,
-                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                create_at:"2018-01-27T09:54:25.000+08:00",
                                 compiled_content:"呢染头发",
                             },
                             {
                                 id:20113418,
+                                EShow:false,
                                 user_id:2604719,
                                 user:{
                                     id:2604719,
                                     nick_name:'居然敢和你',
                                 },
                                 parent_id:19935726,
-                                create_at:"2018-01-25T05:54:25.000+08:00",
+                                create_at:"2018-01-28T01:54:25.000+08:00",
                                 compiled_content:"的积分工会那个号你电脑",
                             },
                         ]
                     },
                     {
                         id:19935727,
+                        FShow:false,
+                        EShow:false,
+                        isActive:false,
+                        zanObj:{
+                            'fa-thumbs-o-up':true,
+                            'fa-thumbs-up':false
+                        },
                         floor:4,
                         liked:true,
                         likes_count:1,
@@ -235,14 +358,43 @@
                             nick_name:'吃辣的',
                             badgue:false,
                         },
-                        create_at:"2018-01-25T07:54:25.000+08:00",
+                        create_at:"2018-01-31T06:24:05.000+08:00",
                         children_count:0,
-                        compiled_content:"我的",
+                        compiled_content:"我的阿萨德阿萨德法师是的父亲发v的看见爱上阿萨德法师是的父亲发v的看见爱上阿萨德法师是的父亲发v的看见爱上法师是的父亲发v的看见爱上的合法化是的罚款是的空间阿萨德科技",
                         children:[
                         
                         ]
                     },
-                ]  
+                    {
+                        id:19935728,
+                        FShow:false,
+                        EShow:false,
+                        isActive:false,
+                        zanObj:{
+                            'fa-thumbs-o-up':true,
+                            'fa-thumbs-up':false
+                        },
+                        floor:5,
+                        liked:true,
+                        likes_count:5,
+                        note_id:2054702,
+                        user_id:1781849,
+                        user:{
+                            avatar:'/default-avatar.jpg',
+                            id:1781849,
+                            is_author:false,
+                            nick_name:'gy',
+                            badgue:false,
+                        },
+                        create_at:"2018-01-31T01:24:05.000+08:00",
+                        children_count:0,
+                        compiled_content:"时间对吗？时间对吗？时间对吗？时间对吗？",
+                        children:[
+                        
+                        ]
+                    },
+                ],
+               
             }
         },
         components:{
@@ -254,22 +406,88 @@
                 this.value += code;
             },
             sendData:function(){
-                console.log('发送value值数据给后端');
-                
+                console.log('发送value值数据给后端');     
+            },
+            zan:function(comment){
+                comment.isActive = !comment.isActive;
+                comment.zanObj['fa-thumbs-o-up'] = !comment.zanObj['fa-thumbs-o-up'];
+                comment.zanObj['fa-thumbs-up'] = !comment.zanObj['fa-thumbs-up'];
+                if(comment.isActive == true){
+                    ++comment.likes_count;
+                }else{
+                    --comment.likes_count;
+                }  
+            },
+            showForm:function(comment){
+                comment.FShow = ! comment.FShow;
+                comment.EShow = false;
+                this.t_value = '';  
+            },
+            closeForm:function(comment){
+                comment.FShow = false;
+            },
+            showE:function(comment){
+                comment.EShow =!comment.EShow; 
+            },
+            showFormNew:function(comment,subComment){
+                comment.FShow = ! comment.FShow;
+                comment.EShow = false;   
+                this.t_value = '@'+subComment.user.nick_name;  
+            },
+            likeSort:function(){
+                // 定制排序标准
+                function compare(property){
+                    return function(obj1,obj2){
+                        var value1 = obj1[property];
+                        var value2 = obj2[property];
+                        return value2 - value1;     // 降序
+                    }
+                }             
+                var sortObj = this.comments.sort(compare("likes_count"));
+                this.comments = sortObj;
+            },
+            timeSort:function(){
+                function compare(property){
+                    return function(obj1,obj2){
+                        var value1 = obj1[property];
+                        var value2 = obj2[property];
+                        return value1 - value2;     
+                    }
+                }
+                for(var i = 0;i< this.comments.length;i++){
+                    // console.log(this.comments[i].create_at); 
+                    var aaa =  this.comments[i].create_at;
+                    var ccc = new Date(aaa).getTime()  
+                    // console.log(ccc); 
+                    this.comments[i]["timedata"]=ccc;                                        
+                }  
+               
+                var sortObj = this.comments.sort(compare("timedata"));
+                    // console.log(sortObj);                   
+                    this.comments = sortObj;               
+            },
+            untimeSort:function(){
+                function compare(property){
+                    return function(obj1,obj2){
+                        var value1 = obj1[property];
+                        var value2 = obj2[property];
+                        return value2 - value1;     
+                    }
+                }
+                for(var i = 0;i< this.comments.length;i++){
+                    // console.log(this.comments[i].create_at); 
+                    var aaa =  this.comments[i].create_at;
+                    var ccc = new Date(aaa).getTime()  
+                    // console.log(ccc); 
+                    this.comments[i]["timedata"]=ccc;                                        
+                }  
+               
+                var sortObj = this.comments.sort(compare("timedata"));
+                    // console.log(sortObj);              
+                    this.comments = sortObj;  
             }
         },
-        filters: {
-            time: function (value) {
-                var d = new Date(value);
-                var year = d.getFullYear();
-                var month = d.getMonth() + 1;
-                var day = d.getDate()<10 ? '0' + d.getDate() : '' + d.getDate();
-                var hour = d.getHours();
-                var minutes = d.getMinutes();
-                var seconds = d.getSeconds();
-                return  year+ '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
-            }
-        }
+       
     }
 </script>
 <style scoped>
@@ -415,7 +633,11 @@
    }
    .note .post .comment-list .comment{
        padding: 20px 0 30px 0;
-       border: 1px solid #f0f0f0;
+       border-top: 1px solid #f0f0f0;
+       border-bottom: 1px solid #f0f0f0;
+   }
+   .note .post .comment-list .comment .author{
+       margin-bottom: 15px;
    }
    .note .post .comment-list .comment .info{
         display: inline-block;
@@ -428,4 +650,173 @@
        font-size: 12px;
        color: #969696 !important;
    }
+   /* 用户头像提示 */
+   .user_popover{
+
+   }
+   .user_popover .avatar{
+       display: inline-block;
+       vertical-align: middle;
+       margin-right: 5px;
+   }
+   .user_popover .info{
+        display: inline-block;
+       vertical-align: middle;
+   }
+   .user_popover .info .name{
+       font-size: 15px;
+       font-weight: 700;
+   }
+   .user_popover .info .meta{
+       font-size: 13px;
+   }
+   .pop_foot{
+       border-top: 1px #ccc solid;
+       padding: 20px 0;
+   }
+   .pop_foot .cancel{
+       float: right;
+   }
+   .pop_foot .guanzhu{
+       float: right;
+       margin-right: 10px;
+   }
+
+
+   .note .post .comment-list .comment .comment-warp p{
+        font-size: 16px;
+        margin: 10px 0;
+        line-height: 1.5;
+        word-break: break-all !important;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group .zan.active i{
+        color: #ea6f5a;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group .zan.active span{
+       color: #2f2f2f !important;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group a{
+       color: #969696 !important;
+       margin-right: 10px;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group a i{
+       font-size: 18px;
+       margin-right: 5px;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group a span{
+       font-size: 14px;
+   }
+   .note .post .comment-list .sub-comment-list{
+       border-left: 2px solid #d9d9d9;
+       margin-top: 10px;
+       padding: 5px 0 5px 20px;
+   }
+   .note .post .comment-list .sub-comment-list .sub-comment{
+       padding-bottom: 15px;
+       margin-bottom: 15px;
+       border-bottom: 1px dashed #f0f0f0;
+   }
+   .note .post .comment-list .sub-comment-list .sub-comment p{
+       font-size: 14px;
+       line-height: 1.5;
+       margin-bottom: 5px;
+   }
+   .note .post .comment-list .sub-comment-list .sub-comment p a{
+       color: #3194d0 !important;
+   }
+   .note .post .comment-list .sub-comment-list .sub-comment .sub-tool-group{
+        font-size: 12px;
+        color: #969696;
+   }
+   .note .post .comment-list .sub-comment-list .sub-comment .sub-tool-group a{
+       margin-left: 5px;
+   }
+   .note .post .comment-list .sub-comment-list .sub-comment .sub-tool-group a i{
+       margin-right: 5px;
+   }
+   .note .post .comment-list .sub-comment-list .more-comment{
+       font-size: 14px;
+       color: #969696;
+   }
+   .note .post .comment-list .sub-comment-list .more-comment a:hover{
+       color: #2f2f2f !important;
+   }
+   .note .post .comment-list .sub-comment-list .more-comment a i{
+       margin-right: 5px;
+   }
+   /* 二级回复表单样式 */
+   .note .post .comment-list .comment .second-comment{
+        border-left: 2px solid #d9d9d9;
+       margin-top: 10px;
+       padding: 5px 0 5px 20px;
+   }
+   .note .post .comment-list .comment .second-comment textarea{
+        width: 100%;
+       height: 80px;
+       padding-left: 10px 15px;
+       border:1px solid #ccc;
+       border-radius: 4px;
+       display: inline-block;
+       vertical-align: top;
+       outline-style: none;
+       resize: none;
+       font-size: 13px;
+       background: #f8f8f8
+   }
+   .note .post .comment-list .comment .second-comment .emoji-modal-warp{
+    position: relative;
+   }
+   .note .post .comment-list .comment .second-comment .emoji{
+       float: left;
+       margin-top: 14px;
+   }
+   .note .post .comment-list .comment .second-comment .emoji i{
+       font-size: 25px;
+       color: #969696;
+   }
+   .note .post .comment-list .comment .second-comment i:hover{
+       color: #333 !important;
+   }
+   .note .post .comment-list .comment .second-comment .hint{
+       float: left;
+       margin: 17px 0 0 20px;
+       font-size: 13px;
+       color: #969696;
+   }
+   .note .post .comment-list .comment .second-comment .cancel{
+       float: right;
+       font-size: 16px;
+       margin: 18px 30px 0 0;
+       color: #969696 !important;
+   }
+   .note .post .comment-list .comment .second-comment .cancel:hover{
+       color: #2f2f2f !important;
+   }
+   .note .post .comment-list .comment .second-comment .btn-send{
+       float: right;
+       width: 78px;
+       padding: 8px 18px;
+       margin: 10px 0;
+       font-size: 18px;
+       background: #42c02e;
+       border-radius: 20px;
+       color: #fff !important;
+       box-shadow: none;
+   }
+   .note .post .comment-list .comment .second-comment .btn-send:hover{
+       background: #3db922;
+   }
+   .note .post .comment-list .comment .second-comment .emoji-modal-warp .emoji-modal{
+       position: absolute;
+       top:50px;
+       left: -48px;
+       width: 402px;
+       height: 208px;
+       padding: 10px;
+       background: #fff;
+       border: 1px solid #d9d9d9;
+       border-radius: 4px;
+       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1)
+   }
+   
 </style>

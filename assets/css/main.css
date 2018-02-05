@@ -59,6 +59,17 @@ ul,ol,dl {
         width: 750px;
     }
 }
+
+@media (max-width:750px){
+    body,html{
+        overflow-x: hidden;
+    }
+}
+@media (max-width:785px){
+    .note .post {
+        margin: 0 74px;
+    }
+}
 /*******************************首页布局*************************************/
 .index {
     padding-top: 30px;
@@ -364,6 +375,11 @@ ul,ol,dl {
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 40px;
+}
+@media (max-width:785px){
+    .note .post {
+        margin: 0 74px;
+    }
 }
 .note .post .article .title{
     font-size: 34px;
