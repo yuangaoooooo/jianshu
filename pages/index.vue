@@ -279,7 +279,7 @@
                             </li>
                         </ul>
                         <nuxt-link to="/" class="find-more">
-                            产看全部<i class="fa fa-angle-right"></i>
+                            查看全部<i class="fa fa-angle-right"></i>
                         </nuxt-link>
                     </div>
                 </div>

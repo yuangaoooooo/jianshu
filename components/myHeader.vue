@@ -15,7 +15,7 @@
                 <nuxt-link to="/sign-in" class="btn sign-in">登录</nuxt-link>
 
                 <!-- 如果用户登录那么显示用户头像 -->
-                <div class="user" style="display:none"  @mouseover="userShow=true" @mouseleave="userShow=false">
+                <div class="user" style="display:block"  @mouseover="userShow=true" @mouseleave="userShow=false">
                     <div class="drop-down">
                         <nuxt-link class="avatar" to="/user">
                             <img src="../assets/img/default-avatar.jpg" alt="">
@@ -24,21 +24,21 @@
                     <div class="drop-menu" v-show="userShow">
                         <ul>
                             <li>
-                                <nuxt-link to="/">
+                                <nuxt-link to="/u/me">
                                     <i class="fa fa-home"></i>
                                     我的主页
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/">
+                                <nuxt-link to="/u/collect">
                                     <i class="fa fa-bookmark"></i>
                                     收藏的文章
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/">
+                                <nuxt-link to="/u/like">
                                     <i class="fa fa-heart"></i>
-                                    西黄的文章
+                                    喜欢的文章
                                 </nuxt-link>
                             </li>
                             <li>
