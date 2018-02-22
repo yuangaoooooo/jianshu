@@ -42,7 +42,7 @@
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/">
+                                <nuxt-link to="/u/setting">
                                     <i class="fa fa-cog"></i>
                                     设置
                                 </nuxt-link>
@@ -82,31 +82,31 @@
                             <div class="drop-menu" v-show="notifyShow">
                                 <ul>
                                     <li>
-                                        <nuxt-link to="/">
+                                        <nuxt-link to="/m/pinlun">
                                             <i class="fa fa-comment-o"></i>
                                             评论
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/">
+                                        <nuxt-link to="/m/jianxin">
                                             <i class="fa fa-envelope-open-o"></i>
                                             简信
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/">
+                                        <nuxt-link to="/m/tougao">
                                             <i class="fa fa-hand-o-up"></i>
                                             投稿请求
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/">
+                                        <nuxt-link to="/m/likezan">
                                             <i class="fa fa-heart-o"></i>
                                             西黄和赞
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/">
+                                        <nuxt-link to="/m/guanzhu">
                                             <i class="fa fa-user-o"></i>
                                             关注
                                         </nuxt-link>
