@@ -24,25 +24,25 @@
                     <div class="drop-menu" v-show="userShow">
                         <ul>
                             <li>
-                                <nuxt-link to="/u/me">
+                                <nuxt-link to="/me">
                                     <i class="fa fa-home"></i>
                                     我的主页
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/u/collect">
+                                <nuxt-link to="/collect">
                                     <i class="fa fa-bookmark"></i>
                                     收藏的文章
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/u/like">
+                                <nuxt-link to="/like">
                                     <i class="fa fa-heart"></i>
                                     喜欢的文章
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/u/setting">
+                                <nuxt-link to="/setting/jcsz">
                                     <i class="fa fa-cog"></i>
                                     设置
                                 </nuxt-link>
@@ -68,45 +68,45 @@
                             </nuxt-link>
                         </li>
                         <li>
-                            <nuxt-link to="/">
+                            <nuxt-link to="/cared/qyq">
                                 <i class="fa fa-book"></i>
                                 <span>关注</span>
                                 
                             </nuxt-link>
                         </li>
                         <li class="notify" @mouseover="notifyShow=true" @mouseleave="notifyShow=false">
-                            <nuxt-link to="/">
+                            <nuxt-link to="/message/pinlun">
                                 <i class="fa fa-bell"></i>
                                 <span>消息</span>    
                             </nuxt-link>
-                            <div class="drop-menu" v-show="notifyShow">
+                            <div class="drop-menu" v-show="notifyShow" @click="isshow">
                                 <ul>
                                     <li>
-                                        <nuxt-link to="/m/pinlun">
+                                        <nuxt-link to="/message/pinlun">
                                             <i class="fa fa-comment-o"></i>
                                             评论
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/m/jianxin">
+                                        <nuxt-link to="/message/jianxin">
                                             <i class="fa fa-envelope-open-o"></i>
                                             简信
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/m/tougao">
+                                        <nuxt-link to="/message/tougao">
                                             <i class="fa fa-hand-o-up"></i>
                                             投稿请求
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/m/likezan">
+                                        <nuxt-link to="/message/likezan">
                                             <i class="fa fa-heart-o"></i>
                                             西黄和赞
                                         </nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/m/guanzhu">
+                                        <nuxt-link to="/message/guanzhu">
                                             <i class="fa fa-user-o"></i>
                                             关注
                                         </nuxt-link>
@@ -137,6 +137,11 @@
                 userShow:false,
                 notifyShow:false,
                 bgShow:false,
+            }
+        },
+        methods:{
+            isshow:function(){
+                this.notifyShow=false;
             }
         }
     }

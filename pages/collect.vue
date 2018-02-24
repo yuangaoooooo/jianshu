@@ -2,7 +2,7 @@
     <div>
         <my-header></my-header>
         <div class="main">
-            <img class="tag-banner" src="../../assets/img/index-img/collect.png" alt="">
+            <img class="tag-banner" src="../assets/img/index-img/collect.png" alt="">
             <div class="content">
                 <div class="content-placeholder">
                     <div class="author">
@@ -26,7 +26,7 @@
                 <div class="content" @mouseover="islike=true" @mouseleave="islike=false">
                     <div class="author">
                         <nuxt-link class="avatar" to="/u/123">
-                            <img src="../../assets/img/default-avatar.jpg" alt="">                                          
+                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
                         </nuxt-link>
                         <div class="info">
                             <nuxt-link to="/u/123" class="nickname">
@@ -63,7 +63,7 @@
     </div>
 </template>
 <script>
-    import myHeader from '../../components/myHeader.vue'
+    import myHeader from '../components/myHeader.vue'
     export default {
         name:'collect',
         components:{

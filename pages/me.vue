@@ -6,7 +6,7 @@
                 <div class="col-8 me-main">
                     <div class="main-top">
                         <nuxt-link class="avatar" to="/u/me">
-                            <img src="../../assets/img/default-avatar.jpg" alt="">
+                            <img src="../assets/img/default-avatar.jpg" alt="">
                         </nuxt-link>
                         <div class="xinxi">
                             <div class="title">
@@ -90,7 +90,7 @@
                                 <div class="content">
                                     <div class="author">
                                         <nuxt-link class="avatar" to="/u/123">
-                                            <img src="../../assets/img/default-avatar.jpg" alt="">                                          
+                                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
                                         </nuxt-link>
                                         <div class="info">
                                             <nuxt-link to="/u/123" class="nickname">
@@ -147,7 +147,7 @@
                                 <div class="content">
                                     <div class="author">
                                         <nuxt-link class="avatar" to="/u/123">
-                                            <img src="../../assets/img/default-avatar.jpg" alt="">                                          
+                                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
                                         </nuxt-link>
                                         <div class="info">
                                             <nuxt-link to="/u/123" class="nickname">
@@ -204,7 +204,7 @@
                                 <div class="content">
                                     <div class="author">
                                         <nuxt-link class="avatar" to="/u/123">
-                                            <img src="../../assets/img/default-avatar.jpg" alt="">                                          
+                                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
                                         </nuxt-link>
                                         <div class="info">
                                             <nuxt-link to="/u/123" class="nickname">
@@ -262,7 +262,7 @@
                                    
                                     <div class="author">
                                         <nuxt-link class="avatar" to="/u/123">
-                                            <img src="../../assets/img/default-avatar.jpg" alt="">                                          
+                                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
                                         </nuxt-link>
                                         <div class="info">
                                             <nuxt-link to="/u/123" class="nickname">
@@ -336,7 +336,7 @@
     </div>
 </template>
 <script>
-    import myHeader from '../../components/myHeader.vue'
+    import myHeader from '../components/myHeader.vue'
 export default {
     name:'me',
     components:{

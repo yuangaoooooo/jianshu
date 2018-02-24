@@ -6,7 +6,7 @@
                 <div class="col-8 me-main">
                     <div class="main-top">
                         <nuxt-link class="avatar" to="/u/me">
-                            <img src="../../assets/img/default-avatar.jpg" alt="">
+                            <img src="../assets/img/default-avatar.jpg" alt="">
                         </nuxt-link>
                         <div class="xinxi">
                             <div class="title">
@@ -79,7 +79,7 @@
                                 <div class="content-guanzhu">
                                     <div class="info">
                                         <nuxt-link class="avatar" to="/u/123">
-                                            <img src="../../assets/img/default-avatar.jpg" alt="">
+                                            <img src="../assets/img/default-avatar.jpg" alt="">
                                         </nuxt-link>
                                         <a class="btn btn-success" href="javascript:void(0)":class="followObj"
                                         @click="isFollow" @mouseover="noFollow" @mouseleave="beFollow">
@@ -121,7 +121,7 @@
                                 <div class="content" @mouseover="islike=true" @mouseleave="islike=false">
                                     <div class="author">
                                         <nuxt-link class="avatar" to="/u/123">
-                                            <img src="../../assets/img/default-avatar.jpg" alt="">                                          
+                                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
                                         </nuxt-link>
                                         <div class="info">
                                             <nuxt-link to="/u/123" class="nickname">
@@ -196,7 +196,7 @@
     </div>
 </template>
 <script>
-    import myHeader from '../../components/myHeader.vue'
+    import myHeader from '../components/myHeader.vue'
 export default {
     name:'like',
     components:{
