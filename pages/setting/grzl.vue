@@ -40,29 +40,39 @@
                             </p>
                             <ul>
                                 <li>
-                                    <i class="fa fa-weibo weibo"></i>
-                                    绑定微博
-                                    <span class="fa fa-angle-right"></span>
+                                    <nuxt-link to="/">
+                                        <i class="fa fa-weibo weibo"></i>
+                                        绑定微博
+                                        <span class="fa fa-angle-right"></span>
+                                    </nuxt-link>
                                 </li>
                                 <li>
-                                    <i class="fa fa-weixin weixin"></i>
-                                    绑定微信
-                                    <span class="fa fa-angle-right"></span>
+                                   <nuxt-link to="/">
+                                        <i class="fa fa-weixin weixin"></i>
+                                        绑定微信
+                                        <span class="fa fa-angle-right"></span>
+                                   </nuxt-link>
                                 </li>
                                 <li>
-                                    <i class="fa fa-qq qq"></i>
-                                    绑定qq
-                                    <span class="fa fa-angle-right"></span>
+                                    <nuxt-link to="/">
+                                        <i class="fa fa-qq qq"></i>
+                                        绑定qq
+                                        <span class="fa fa-angle-right"></span>
+                                    </nuxt-link>
                                 </li>
                                 <li>
-                                    <i class="fa fa-snowflake-o douban"></i>
-                                    绑定豆瓣
-                                    <span class="fa fa-angle-right"></span>
+                                    <nuxt-link to="/">
+                                        <i class="fa fa-snowflake-o douban"></i>
+                                        绑定豆瓣
+                                        <span class="fa fa-angle-right"></span>
+                                    </nuxt-link>
                                 </li>
                                 <li>
-                                    <i class="fa fa-google-plus google"></i>
-                                    绑定谷歌
-                                    <span class="fa fa-angle-right"></span>
+                                    <nuxt-link to="/">
+                                        <i class="fa fa-google-plus google"></i>
+                                        绑定谷歌
+                                        <span class="fa fa-angle-right"></span>
+                                    </nuxt-link>
                                 </li>
                             </ul>
                         </td>
@@ -198,6 +208,10 @@
     line-height: 50px;
     font-size: 14px;
     border-bottom: 1px solid #eaeaea;
+}
+.name ul li i{
+    margin-right: 20px;
+    font-size: 18px;
 }
 .name ul li span{
     color: black !important;

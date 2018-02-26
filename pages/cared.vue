@@ -14,13 +14,13 @@
                             简友圈
                         </nuxt-link>
                     </li>
-                    <li :class="">
-                        <nuxt-link to="/">
+                    <li :class="{isActive:this.$route.path=='/cared/dushu'}">
+                        <nuxt-link to="/cared/dushu">
                             <img class="fang" src="../assets/img/default-avatar.jpg" alt="">
                             读书
                         </nuxt-link>
                     </li>
-                    <li :class="">
+                    <li >
                             <nuxt-link to="/">
                                 <img class="fang" src="../assets/img/default-avatar.jpg" alt="">
                                 读书
@@ -102,13 +102,16 @@
     }
 }   
 .main{
-    margin: 0 auto;
+    margin: 30px auto;
+    position: relative;
 }
 .aside{
     float: left;
-    height: 500px;
+    height: 585px;
     overflow: scroll;
     overflow-x: hidden;
+    position: fixed;
+    bottom: 0;
 }
 .aside .h{
     border-bottom: 1px solid #eaeaea;

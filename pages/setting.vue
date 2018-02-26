@@ -84,13 +84,22 @@
 }
 .aside ul li{
     border-radius: 4px;
+    font-size: 15px;
 }
+
 .aside ul li:hover{
     background-color: #f0f0f0;
 }
 .aside ul a i{
-    color: #ea6f5a;
+    color: white;
     margin-right: 20px;
+    width: 35px;
+    height: 35px;
+    background-color: #a0a0a0;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 5px;
 }
 nuxt-child{
     float: right;

@@ -3,12 +3,12 @@
         <div class="main">
             <div class="content-jichu">
                 <div class="user">
-                    <div class="avatar">
+                    <nuxt-link to="/" class="avatar">
                         <img src="../../assets/img/default-avatar.jpg" alt="">
-                    </div>
-                    <div class="change">
+                    </nuxt-link>
+                    <nuxt-link to="/" class="change">
                         更换头像
-                    </div>
+                    </nuxt-link>
                     
                 </div>
                 <table>
@@ -124,7 +124,7 @@
     font-size: 14px;
     line-height: 30px;
     text-align: center;
-    color: #42c02e;
+    color: #42c02e !important;
 }
 .main .content-jichu table{
     width: 100%;
@@ -154,15 +154,16 @@
     color: #969696;
 }
 .btn{
-    width: 50px;
-    height: 30px;
+    width: 54px;
+    height: 29px;
     line-height: 15px;
     font-size: 14px;
     text-align: center;
     border: #42c02e 1px solid;
     color: #42c02e;
-    border-radius: 30px;
+    border-radius: 40px;
     cursor: pointer;
+    padding: 1px 12px;
 }
 .btn:hover{
     background-color: #f5fcf3;

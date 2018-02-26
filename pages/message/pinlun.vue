@@ -9,7 +9,7 @@
                     <img src="../../assets/img/default-avatar.jpg" alt="">
                 </nuxt-link>
                 <div class="in">
-                    <div class="who">a23546wd 评论了你的文章<span>《2018-02-09》</span></div>
+                    <div class="who">a23546wd 评论了你的文章<span class="lan">《2018-02-09》</span></div>
                     <div class="time">2018.02.10 08:26</div>
                 </div>
                 <div class="neiron">
@@ -70,7 +70,7 @@
     margin-bottom: 20px;
 }
 .user{
-    padding: 20px 0 20px 20px;
+    padding: 10px 0 20px 20px;
     border-bottom: 1px solid #eaeaea;
     position: relative;
 }
@@ -111,5 +111,7 @@
 .user .meta a:hover{
     color: black !important;
 }
-
+.lan{
+    color: blue;
+}
 </style>

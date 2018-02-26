@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="con">
-            <div class="content">
                 <div class="content-placeholder">
                     <div class="author">
                         <div class="avatar"></div>                                         
@@ -21,7 +20,7 @@
                         <span></span>
                     </div>
                 </div>
-                <div class="content" @mouseover="islike=true" @mouseleave="islike=false">
+                <div class="content">
                     <div class="author">
                         <nuxt-link class="avatar" to="/u/123">
                             <img src="../../assets/img/default-avatar.jpg" alt="">                                          
@@ -55,8 +54,7 @@
                             539
                         </span>
                     </div>
-                </div>
-            </div>    
+                </div>  
         </div>
     </div>
 </template>

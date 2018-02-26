@@ -3,60 +3,58 @@
         <my-header></my-header>
         <div class="main">
             <img class="tag-banner" src="../assets/img/index-img/collect.png" alt="">
-            <div class="content">
-                <div class="content-placeholder">
-                    <div class="author">
-                        <div class="avatar"></div>                                         
-                        <div class="info"></div>
-                    </div>
-                    <div class="title"></div>
-                    <div class="abstract ab1"></div>
-                    <div class="abstract ab2"></div>
-                    <div class="abstract ab3"></div>
-                    <div class="img"></div>
-                    <div class="meta">
-                        <i class="fa fa-eye"></i>
-                        <span></span>
-                        <i class="fa fa-comment"></i>
-                        <span></span>
-                        <i class="fa fa-heart"></i>
-                        <span></span>
-                    </div>
+            <div class="content-placeholder">
+                <div class="author">
+                    <div class="avatar"></div>                                         
+                    <div class="info"></div>
                 </div>
-                <div class="content" @mouseover="islike=true" @mouseleave="islike=false">
-                    <div class="author">
-                        <nuxt-link class="avatar" to="/u/123">
-                            <img src="../assets/img/default-avatar.jpg" alt="">                                          
-                        </nuxt-link>
-                        <div class="info">
-                            <nuxt-link to="/u/123" class="nickname">
-                                用户
-                            </nuxt-link>
-                            <span class="time">
-                                20：00
-                            </span>
-                        </div>
-                    </div>
-                    <nuxt-link class="title" to="/p/123">
-                        如何把书中的知识转化成能力？这是我见过的最好回答
+                <div class="title"></div>
+                <div class="abstract ab1"></div>
+                <div class="abstract ab2"></div>
+                <div class="abstract ab3"></div>
+                <div class="img"></div>
+                <div class="meta">
+                    <i class="fa fa-eye"></i>
+                    <span></span>
+                    <i class="fa fa-comment"></i>
+                    <span></span>
+                    <i class="fa fa-heart"></i>
+                    <span></span>
+                </div>
+            </div>
+            <div class="content" @mouseover="islike=true" @mouseleave="islike=false">
+                <div class="author">
+                    <nuxt-link class="avatar" to="/u/123">
+                        <img src="../assets/img/default-avatar.jpg" alt="">                                          
                     </nuxt-link>
-                    <p class="abstract">
-                        随着知识经济的兴起，读书的重要性得到了大家的普遍认同，于是市场上出现很多读书方法，比如速度、多读、慢读、列读......不管你采用哪一种读书方法，最终都要回归到“行动”二字上，正如陆...
-                    </p>
-                    <div class="meta">
-                        <nuxt-link to="/p/123">
-                            <i class="fa fa-eye"></i>
-                            2590
+                    <div class="info">
+                        <nuxt-link to="/u/123" class="nickname">
+                            用户
                         </nuxt-link>
-                        <nuxt-link to="/p/123">
-                            <i class="fa fa-comment"></i>
-                            500
-                        </nuxt-link>
-                        <span>
-                            <i class="fa fa-heart"></i>
-                            539
+                        <span class="time">
+                            20：00
                         </span>
                     </div>
+                </div>
+                <nuxt-link class="title" to="/p/123">
+                    如何把书中的知识转化成能力？这是我见过的最好回答
+                </nuxt-link>
+                <p class="abstract">
+                    随着知识经济的兴起，读书的重要性得到了大家的普遍认同，于是市场上出现很多读书方法，比如速度、多读、慢读、列读......不管你采用哪一种读书方法，最终都要回归到“行动”二字上，正如陆...
+                </p>
+                <div class="meta">
+                    <nuxt-link to="/p/123">
+                        <i class="fa fa-eye"></i>
+                        2590
+                    </nuxt-link>
+                    <nuxt-link to="/p/123">
+                        <i class="fa fa-comment"></i>
+                        500
+                    </nuxt-link>
+                    <span>
+                        <i class="fa fa-heart"></i>
+                        539
+                    </span>
                 </div>
             </div>
         </div>

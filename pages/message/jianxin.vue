@@ -80,7 +80,7 @@
     margin-bottom: 20px;
 }
 .user{
-    padding: 20px 0 20px 20px;
+    padding: 10px 0 20px 20px;
     border-bottom: 1px solid #eaeaea;
     position: relative;
 }

@@ -83,6 +83,10 @@
 }
 .aside ul li{
     border-radius: 4px;
+    font-size: 15px;
+}
+.aside ul li i{
+    font-size: 20px;
 }
 .aside ul li:hover{
     background-color: #f0f0f0;
