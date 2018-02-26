@@ -4,8 +4,16 @@
         <div class="main">
             <div class="aside">
                 <div class="h">
-                    <div class="all">全部关注<i class="fa fa-chevron-circle-down "></i></div>
-                    <div class="add"><i class="fa fa-user"></i>添加关注</div>
+                    <div class="all">
+                        <nuxt-link to="/">
+                            全部关注<i class="fa fa-chevron-circle-down "></i>
+                        </nuxt-link>
+                    </div>
+                    <div class="add">
+                        <nuxt-link to="/">
+                            <i class="fa fa-user"></i>添加关注
+                        </nuxt-link>
+                    </div>
                 </div>
                 <ul>
                     <li :class="{isActive:this.$route.path=='/cared/qyq'}">

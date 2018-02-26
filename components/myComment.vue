@@ -168,7 +168,7 @@
                     <transition :duration="200" name="fade">
                         <form v-if="activeIndex.includes(index)"  class="second-comment" >
                             <textarea v-focus  placeholder="写下你的评论"
-                                v-model="value" 
+                                v-model="subCommentList[index]" 
                             >
                             </textarea>
                             <transition name="fade">
@@ -361,6 +361,7 @@
                 ],
                 activeIndex:[],
                 emojiIndex:[],
+                subCommentList:[],
                
             }
         },
@@ -372,6 +373,10 @@
                  // 钩子函数：bind inserted update componentUpdated unbind
                  // 钩子函数的参数：el，binding，vnode，oldVnode
                 bind:function(el,binding,vnode,oldVnode){
+                    console.log(el);
+                    el.focus();
+                },
+                update:function(el,binding,vnode,oldVnode){
                     console.log(el);
                     el.focus();
                 },
@@ -393,9 +398,15 @@
                 if(this.activeIndex.includes(value)){
                     let index = this.activeIndex.indexOf(value);
                     this.activeIndex.splice(index,1);
+                   
                 }else{
                     this.activeIndex.push(value);
+                     //清空表单内的内容
+                     this.subCommentList[value] = '';
+                     //将表情列表关掉
+                     this.emojiIndex = []; 
                 }
+                
             },
             sendSubCommentData:function(value){
                 let index = this.activeIndex.indexOf(value);
@@ -404,6 +415,7 @@
             closeSubComment:function(value){
                 let index = this.activeIndex.indexOf(value);
                 this.activeIndex.splice(index,1);
+                
             },
             showSubEmoji:function(value){
                 if(this.emojiIndex.includes(value)){
@@ -416,9 +428,18 @@
                 }
             },
             selectSubEmoji:function(code){
-                console.log(this);
-                console.log(this.$refs.emoji);
+                console.log(code);
+                console.log(this.emojiIndex[0]);
                 
+                // 当前下标
+                let index = this.emojiIndex[0];
+                // 将表情所代表的code值放入表单中
+                if(this.subCommentList[index] == null){
+                    this.subCommentList[index] = '';
+                }
+                this.subCommentList[index] +=code;
+                //关掉emoji框
+                this.emojiIndex = [];
                 
             },
         },

@@ -321,14 +321,18 @@
                     我创建的专题
                   </p>
                   <p class="zuanti lu">
-                    <span class="fa fa-plus"></span>创建一个新专题
+                    <nuxt-link to="/">
+                        <span class="fa fa-plus"></span>创建一个新专题
+                    </nuxt-link>
                   </p>
                   <hr>
                   <p class="zuanti">
                       我的文集
                   </p>
                   <p class="book">
-                        <span class="fa fa-book"></span>日记本
+                        <nuxt-link to="/">
+                            <span class="fa fa-book"></span>日记本
+                        </nuxt-link>
                   </p>
                 </div>
             </div>
