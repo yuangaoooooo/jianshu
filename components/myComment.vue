@@ -167,7 +167,7 @@
                     <!-- 二级回复表单 -->
                     <transition :duration="200" name="fade">
                         <form v-if="activeIndex.includes(index)"  class="second-comment" >
-                            <textarea v-focus  placeholder="写下你的评论"
+                            <textarea v-focus  placeholder="写下你的评论" ref="content"
                                 v-model="subCommentList[index]" 
                             >
                             </textarea>
@@ -376,10 +376,6 @@
                     console.log(el);
                     el.focus();
                 },
-                update:function(el,binding,vnode,oldVnode){
-                    console.log(el);
-                    el.focus();
-                },
                 inserted:function(el){
                     el.focus();
                 }
@@ -405,6 +401,7 @@
                      this.subCommentList[value] = '';
                      //将表情列表关掉
                      this.emojiIndex = []; 
+                     
                 }
                 
             },
@@ -440,6 +437,9 @@
                 this.subCommentList[index] +=code;
                 //关掉emoji框
                 this.emojiIndex = [];
+                //聚焦一下
+                let num = this.activeIndex.indexOf(index);
+                this.$refs.content[num].focus();
                 
             },
         },
