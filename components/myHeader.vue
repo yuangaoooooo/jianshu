@@ -69,14 +69,14 @@
                         </li>
                         <li>
                             <nuxt-link to="/cared/qyq">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-columns"></i>
                                 <span>关注</span>
                                 
                             </nuxt-link>
                         </li>
                         <li class="notify" @mouseover="notifyShow=true" @mouseleave="notifyShow=false">
                             <nuxt-link to="/message/pinlun">
-                                <i class="fa fa-bell"></i>
+                                <i class="fa fa-bell-o"></i>
                                 <span>消息</span>    
                             </nuxt-link>
                             <div class="drop-menu" v-show="notifyShow" @click="isshow">

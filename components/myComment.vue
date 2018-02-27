@@ -130,16 +130,16 @@
                                     <i class="fa fa-thumbs-o-up"></i>
                                     <span>{{comment.likes_count}}人点赞</span>
                                 </a>
-                                <a href="javascript:;">
+                                <a href="javascript:;"  @click="showSubCommentForm(index,'top')">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="">回复</span>
+                                    <span>回复</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- 二级回复 -->
                     <div v-if="comment.children.length != 0" class="sub-comment-list">
-                        <div v-for="(subComment,index) in comment.children" :id="'comment-'+subComment.id" class="sub-comment">
+                        <div v-for="(subComment,nindex) in comment.children" :id="'comment-'+subComment.id" class="sub-comment">
                             <p>
                                 <nuxt-link to="/u/123">
                                     {{subComment.user.nick_name}}     
@@ -151,14 +151,14 @@
                             </p>
                             <div class="sub-tool-group">
                                 <span>{{subComment.create_at | formatDate}}</span>
-                                <a href="javascript:;">
+                                <a href="javascript:;"  @click="showSubCommentAtName(index,subComment.id,subComment.user.nick_name)">
                                     <i class="fa fa-comment-o"></i>
-                                    <span @click="">回复</span>
+                                    <span>回复</span>
                                 </a>
                             </div>
                         </div>
                         <div class="more-comment">
-                            <a class="add-comment-btn" href="javascript:;" @click="showSubCommentForm(index)">
+                            <a class="add-comment-btn" href="javascript:;" @click="showSubCommentForm(index,'bottom')">
                                 <i class="fa fa-pencil"></i>
                                 <span>添加新评论</span>
                             </a>
@@ -200,6 +200,7 @@
     </div>
 </template>
 <script>
+    import Vue from 'vue'
     import vueEmoji from '~/components/vueEmoji'
     export default {
         name:'myComment',
@@ -362,7 +363,8 @@
                 activeIndex:[],
                 emojiIndex:[],
                 subCommentList:[],
-               
+                commentFormState:[],
+                commentId:'',
             }
         },
         components:{
@@ -389,25 +391,52 @@
             sendData:function(){
                 console.log('发送value值数据给后端');     
             },   
-            showSubCommentForm:function(value){
-                console.log(this.activeIndex);
-                if(this.activeIndex.includes(value)){
-                    let index = this.activeIndex.indexOf(value);
-                    this.activeIndex.splice(index,1);
-                   
+            showSubCommentForm:function(index,position){
+                if(!this.activeIndex.includes(index)){
+                    // 没吃打开情空内容
+                    this.subCommentList[index] = '';
+                    //第一次点击，总是显示
+                    this.activeIndex.push(index);
+                    //记录当前点击的下标以及位置
+                    this.commentFormState[index] = position;
+                }else if(this.activeIndex.includes(index)){
+                    if(this.commentFormState[index] !== position){
+                        //点的是另外一个
+                        this.commentFormState[index] = position;
+                    }else{
+                        //点的是同一个,将它隐藏掉.
+                        this.activeIndex.splice(this.activeIndex.indexOf(index),1)
+                        this.commentFormState[index] = '';
+                    }
+                 }
+            },
+            showSubCommentAtName:function(index,id,name){
+                if(this.activeIndex.includes(index)){
+                    if(this.commentId == id){
+                        this.activeIndex.splice(this.activeIndex.indexOf(index),1);
+                        this.commentId = '';
+                        Vue.set(this.subCommentList, index,'');
+                    }else{
+                        //聚焦一下
+                        let num = this.activeIndex.indexOf(index);
+                        this.$refs.content[num].focus();
+                        // 表单已经显示了
+                        Vue.set(this.subCommentList, index,'@' + name + '');
+                        //记录一下上一次点过的id值
+                        this.commentId = id;
+                    }
+                    
                 }else{
-                    this.activeIndex.push(value);
-                     //清空表单内的内容
-                     this.subCommentList[value] = '';
-                     //将表情列表关掉
-                     this.emojiIndex = []; 
-                     
-                }
-                
+                    //表单没显示出来
+                    this.activeIndex.push(index);
+                    Vue.set(this.subCommentList, index,'@' + name + '');
+                }              
             },
             sendSubCommentData:function(value){
                 let index = this.activeIndex.indexOf(value);
                 this.activeIndex.splice(index,1);
+                // value是下标
+                alert(this.subCommentList[value]);
             },
             closeSubComment:function(value){
                 let index = this.activeIndex.indexOf(value);
