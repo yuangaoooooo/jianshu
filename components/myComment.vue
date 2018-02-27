@@ -375,7 +375,7 @@
                  // 钩子函数：bind inserted update componentUpdated unbind
                  // 钩子函数的参数：el，binding，vnode，oldVnode
                 bind:function(el,binding,vnode,oldVnode){
-                    console.log(el);
+                    //console.log(el);
                     el.focus();
                 },
                 inserted:function(el){
@@ -392,17 +392,22 @@
                 console.log('发送value值数据给后端');     
             },   
             showSubCommentForm:function(index,position){
-                if(!this.activeIndex.includes(index)){
-                    // 没吃打开情空内容
-                    this.subCommentList[index] = '';
+                Vue.set(this.subCommentList,index,'');
+                this.commentId = '';
+                if(!this.activeIndex.includes(index)){ 
                     //第一次点击，总是显示
                     this.activeIndex.push(index);
+                    // 没吃打开情空内容
+                    Vue.set(this.subCommentList,index,'');
                     //记录当前点击的下标以及位置
                     this.commentFormState[index] = position;
                 }else if(this.activeIndex.includes(index)){
                     if(this.commentFormState[index] !== position){
                         //点的是另外一个
                         this.commentFormState[index] = position;
+                        //聚焦一下
+                        let num = this.activeIndex.indexOf(index);
+                        this.$refs.content[num].focus();
                     }else{
                         //点的是同一个,将它隐藏掉.
                         this.activeIndex.splice(this.activeIndex.indexOf(index),1)
@@ -411,21 +416,21 @@
                  }
             },
             showSubCommentAtName:function(index,id,name){
+                this.commentFormState = [];
                 if(this.activeIndex.includes(index)){
                     if(this.commentId == id){
                         this.activeIndex.splice(this.activeIndex.indexOf(index),1);
                         this.commentId = '';
-                        Vue.set(this.subCommentList, index,'');
+                        Vue.set(this.subCommentList,index,'');
                     }else{
                         //聚焦一下
                         let num = this.activeIndex.indexOf(index);
                         this.$refs.content[num].focus();
                         // 表单已经显示了
-                        Vue.set(this.subCommentList, index,'@' + name + '');
+                        Vue.set(this.subCommentList,index,'@' + name + '');
                         //记录一下上一次点过的id值
                         this.commentId = id;
-                    }
-                    
+                    }   
                 }else{
                     //表单没显示出来
                     this.activeIndex.push(index);
@@ -439,9 +444,7 @@
                 alert(this.subCommentList[value]);
             },
             closeSubComment:function(value){
-                let index = this.activeIndex.indexOf(value);
-                this.activeIndex.splice(index,1);
-                
+                this.activeIndex.splice(index = this.activeIndex.indexOf(value),1);    
             },
             showSubEmoji:function(value){
                 if(this.emojiIndex.includes(value)){
@@ -454,8 +457,8 @@
                 }
             },
             selectSubEmoji:function(code){
-                console.log(code);
-                console.log(this.emojiIndex[0]);
+                // console.log(code);
+                //console.log(this.emojiIndex[0]);
                 
                 // 当前下标
                 let index = this.emojiIndex[0];
