@@ -167,7 +167,7 @@
                     <!-- 二级回复表单 -->
                     <transition :duration="200" name="fade">
                         <form v-if="activeIndex.includes(index)"  class="second-comment" >
-                            <textarea v-focus  placeholder="写下你的评论" ref="content"
+                            <textarea v-focus="commentFormState[index]" @blur="commentFormState[index]=false"  placeholder="写下你的评论" ref="content"
                                 v-model="subCommentList[index]" 
                             >
                             </textarea>
@@ -374,12 +374,21 @@
             "focus":{
                  // 钩子函数：bind inserted update componentUpdated unbind
                  // 钩子函数的参数：el，binding，vnode，oldVnode
-                bind:function(el,binding,vnode,oldVnode){
+                bind:function(el,{value}){
                     //console.log(el);
-                    el.focus();
+                    if(value){
+                        el.focus();
+                    }
                 },
-                inserted:function(el){
-                    el.focus();
+                update:function(el,{value}){
+                    if(value){
+                        el.focus();
+                    }
+                },
+                inserted:function(el,{value}){
+                    if(value){
+                        el.focus();
+                    }
                 }
             }  
         },
@@ -412,6 +421,8 @@
                    }
                    //存一下上一个回复列表对应点击的按钮
                    this.commentId[index] = ID;
+                   //获取焦点
+                   this.commentFormState[index]=true;
                }
             },
             
@@ -448,8 +459,7 @@
                 //关掉emoji框
                 this.emojiIndex = [];
                 //聚焦一下
-                let num = this.activeIndex.indexOf(index);
-                this.$refs.content[num].focus();
+                this.commentFormState[index]=true;
                 
             },
         },
