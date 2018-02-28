@@ -7,7 +7,7 @@
                     <img src="../assets/img/default-avatar.jpg" alt="">
                 </nuxt-link>
                 <textarea  @focus="send=true"  placeholder="写下你的评论"
-                    v-model="commentData"
+                    v-model="commentData" v-focus="emojiFocus"
                 >
 
                 </textarea>
@@ -28,7 +28,7 @@
                             Ctrl+Enter 发表
                         </div>
                         <a @click="sendData" class="btn btn-send" href="javascript:;">发送</a>
-                        <a @click="send=false" class="cancel" href="javascript:void(0)">取消</a>
+                        <a @click="cancelData" class="cancel" href="javascript:void(0)">取消</a>
                     </div>
                 </transition>
             </form>
@@ -126,9 +126,9 @@
                         <div class="comment-warp">
                             <p>{{comment.compiled_content}}</p>
                             <div class="tool-group">
-                                <a href="javascript:;" class="zan">
-                                    <i class="fa fa-thumbs-o-up"></i>
-                                    <span>{{comment.likes_count}}人点赞</span>
+                                <a href="javascript:;" class="" @click="commentLike(index)">
+                                    <i class="fa " :class="comment.liked ? 'fa-thumbs-up liked':'fa-thumbs-o-up'"></i>
+                                    <span :class="comment.liked ? 'real-liked':''">{{comment.likes_count}}人点赞</span>
                                 </a>
                                 <a href="javascript:;"  @click="showSubCommentForm(index,'top','')">
                                     <i class="fa fa-comment-o"></i>
@@ -365,6 +365,7 @@
                 subCommentList:[],
                 commentFormState:[],
                 commentId:[],
+                emojiFocus:false,
             }
         },
         components:{
@@ -396,10 +397,19 @@
             selectEmoji:function(code){
                 this.showEmoji = false;
                 this.commentData += code;
+                this.emojiFocus =true;
             },
             sendData:function(){
-                console.log('发送value值数据给后端');     
+                console.log('发送value值数据给后端');
+                this.send = false;
+                this.emojiFocus = false;
+                this.commentData = '';     
             },   
+            cancelData:function(){
+                this.send = false;
+                this.emojiFocus = false;
+                this.commentData = '';
+            },
             showSubCommentForm:function(index,id,name){
                 let ID = id.toString();
                if(this.commentId[index] == ID){
@@ -431,9 +441,13 @@
                 this.activeIndex.splice(index,1);
                 // value是下标
                 alert(this.subCommentList[value]);
+                this.subCommentList[value] = '';
+                this.commentId = [];
             },
             closeSubComment:function(value){
-                this.activeIndex.splice(index = this.activeIndex.indexOf(value),1);    
+                this.activeIndex.splice(this.activeIndex.indexOf(value),1);    
+                this.subCommentList[value] = '';
+                this.commentId = [];
             },
             showSubEmoji:function(value){
                 if(this.emojiIndex.includes(value)){
@@ -459,9 +473,21 @@
                 //关掉emoji框
                 this.emojiIndex = [];
                 //聚焦一下
-                this.commentFormState[index]=true;
-                
+                this.commentFormState[index]=true;  
             },
+            commentLike:function(index){
+                if(this.comments[index].liked){
+                    //点赞过的再点赞就取消
+                    this.comments[index].liked = false;
+                    this.comments[index].likes_count -=1;
+                    //留下取消点赞的axios请求
+                }else{
+                    //没点过的 点赞
+                    this.comments[index].liked = true;
+                    this.comments[index].likes_count +=1;
+                    //留下添加点赞的axios请求
+                }
+            }
         },
        
     }
@@ -665,12 +691,6 @@
         line-height: 1.5;
         word-break: break-all !important;
    }
-   .note .post .comment-list .comment .comment-warp .tool-group .zan.active i{
-        color: #ea6f5a;
-   }
-   .note .post .comment-list .comment .comment-warp .tool-group .zan.active span{
-       color: #2f2f2f !important;
-   }
    .note .post .comment-list .comment .comment-warp .tool-group a{
        color: #969696 !important;
        margin-right: 10px;
@@ -679,8 +699,20 @@
        font-size: 18px;
        margin-right: 5px;
    }
+   .note .post .comment-list .comment .comment-warp .tool-group a i:hover{
+       color: #ea6f5a;
+   }
    .note .post .comment-list .comment .comment-warp .tool-group a span{
        font-size: 14px;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group a span.real-liked{
+       color: #333;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group a i.liked{
+       color: #ea6f5a;
+   }
+   .note .post .comment-list .comment .comment-warp .tool-group a span:hover{
+       color: #333;
    }
    .note .post .comment-list .sub-comment-list{
        border-left: 2px solid #d9d9d9;
