@@ -105,13 +105,13 @@
                         <i class="fa fa-pencil-square-o"></i> 编辑
                     </a>
                     <form action=""  v-if="showedit">
-                            <textarea></textarea>
+                            <textarea v-model="value"></textarea>
                             <input type="button" value="保存" class="btn btn-hollow" @click="showedit=false">
                             <a href="javacsript:void(0)" @click="showedit=false">取消</a>
                     </form>
                     <div class="description">
                         <div class="js-intro">
-                            逃跑医生，预防医学专家。
+                           {{value}}
                         </div>
                     </div>
                     <ul class="list user-dynamic">
@@ -142,7 +142,7 @@
                                     <img src="~assets/img/movie.jpg">
                                 </nuxt-link>
                                 <nuxt-link to="/collection/123" class="name">
-                                    朱焘源值班报告
+                                    grooooooter的专题
                                 </nuxt-link>
                             </li>
                         </ul>
@@ -156,7 +156,7 @@
                                     <img src="~assets/img/movie.jpg">
                                 </nuxt-link>
                                 <nuxt-link to="/collection/123" class="name">
-                                    朱焘源值班报告
+                                    grooooooter的专题
                                 </nuxt-link>
                             </li>
                         </ul>
@@ -166,11 +166,11 @@
                         </div>
                         <ul class="list">
                             <li>
-                                <nuxt-link to="/note/123" class="avatar-collection">
+                                <nuxt-link to="/nb/123" class="avatar-collection">
                                     <i class="fa fa-book"></i>
                                 </nuxt-link>
-                                <nuxt-link to="/note/123" class="name">
-                                    朱焘源值班报告
+                                <nuxt-link to="/nb/123" class="name">
+                                    文集
                                 </nuxt-link>
                             </li>
                         </ul>

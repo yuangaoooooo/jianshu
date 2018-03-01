@@ -24,6 +24,11 @@
                             <i class="fa fa-microchip "></i>赞赏设置
                         </nuxt-link>
                     </li>
+                    <li :class="{isActive:this.$route.path=='/setting/zhgl'}">
+                        <nuxt-link to="/setting/zhgl">
+                            <i class="fa fa-cog "></i>账号管理
+                        </nuxt-link>
+                    </li>
                 </ul>
             </div>
             <nuxt-child></nuxt-child>

@@ -12,7 +12,7 @@
                         </td>
                     </tr>
                     <tr class="name">
-                        <td class="nic">个人简介</td>
+                        <td class="nic float-left">个人简介</td>
                         <td>
                             <textarea name="" id="" cols="30" placeholder="填写你的个人简介"></textarea>
                         </td>
@@ -31,7 +31,7 @@
                         </td>
                     </tr>
                     <tr class="name">
-                        <td class="nic">社交账号</td>
+                        <td class="nic float-left">社交账号</td>
                         <td class="inp">
                             <p class="mini">你可以通过绑定的社交帐号登录简书。出于安全因素, 你最初用来创建账户的社交帐号不能移除。</p>
                             <p class="mini">如果帐号被占用，你可以在
@@ -133,9 +133,12 @@
 .main .content-jichu table{
     width: 100%;
 }
-.main .content-jichu table tr td{
-    margin-top: 20px;
+.main .content-jichu table tr{
     border-bottom: 1px solid #eaeaea;
+}
+
+.main .content-jichu table tr td{
+    
     padding: 20px 0;
 }
 .main .content-jichu .name .nic{
@@ -217,10 +220,16 @@
     color: black !important;
 }
 textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
     padding: 5px 10px;
     font-size: 15px;
     border: 1px solid #c8c8c8;
     border-radius: 4px;
     background-color:#f8f8f8;
+}
+.float-left{
+    float: left;
 }
 </style>

@@ -97,7 +97,7 @@
                     </form>
                     <div class="description">
                         <div class="js-intro">
-                            逃跑医生，预防医学专家。
+                            哈哈哈哈哈哈哈
                         </div>
                     </div>
                     <ul class="list user-dynamic">
@@ -128,7 +128,7 @@
                                     <img src="~assets/img/movie.jpg">
                                 </nuxt-link>
                                 <nuxt-link to="/collection/123" class="name">
-                                    朱焘源值班报告
+                                    grooooooter的专题
                                 </nuxt-link>
                             </li>
                         </ul>
@@ -142,7 +142,7 @@
                                     <img src="~assets/img/movie.jpg">
                                 </nuxt-link>
                                 <nuxt-link to="/collection/123" class="name">
-                                    朱焘源值班报告
+                                    grooooooter的专题
                                 </nuxt-link>
                             </li>
                         </ul>
@@ -156,7 +156,7 @@
                                     <i class="fa fa-book"></i>
                                 </nuxt-link>
                                 <nuxt-link to="/note/123" class="name">
-                                    朱焘源值班报告
+                                    grooooooter的文集
                                 </nuxt-link>
                             </li>
                         </ul>

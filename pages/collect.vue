@@ -55,6 +55,7 @@
                         <i class="fa fa-heart"></i>
                         539
                     </span>
+                    <a href="javascript:;" class="quxiao" v-if="islike">取消收藏</a>
                 </div>
             </div>
         </div>
@@ -69,7 +70,7 @@
         },
         data () {
             return {
-                
+                islike:false,
             }
         },
 
@@ -224,5 +225,8 @@
 }
  .content .meta a{
     margin-right: 10px;
+}
+.content .meta .quxiao{
+    margin-left: 10px;
 }
 </style>

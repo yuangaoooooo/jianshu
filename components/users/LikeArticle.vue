@@ -60,6 +60,11 @@
 <script>
     export default {
         name:'LikeArticle',
+        data () {
+            return {
+                islike:false,
+            }
+        }
     }
 </script>
 <style scoped>
