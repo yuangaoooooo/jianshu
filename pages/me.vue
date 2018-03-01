@@ -299,12 +299,17 @@
                     </div>
                 </div>
                 <div class="col-4 me-aside">
-                  <span class="title">个人介绍</span>
-                  <nuxt-link class="bianji" to="/u/me">
+                    <span class="title">个人介绍</span>
+                    <a class="bianji" href="javacsript:void(0)"  @click="showedit=true">
                         <span class="fa fa-pencil"></span>编辑
-                  </nuxt-link>
-                  <hr>
-                  <p class="gzxh">
+                    </a>
+                    <form action=""  v-if="showedit">
+                        <textarea></textarea>
+                        <input type="button" value="保存" class="btn btn-hollow" @click="showedit=false">
+                        <a href="javacsript:void(0)" @click="showedit=false">取消</a>
+                    </form>
+                    <hr>
+                    <p class="gzxh">
                     <nuxt-link to="/u/me">
                         <span class="fa fa-th-large"></span>
                         我关注的专题/文集/连载
@@ -348,7 +353,8 @@ export default {
     },
     data () {
         return {
-            activeName: 'first'
+            activeName: 'first',
+            showedit:false,
         }
     },
     methods: {
@@ -575,6 +581,39 @@ export default {
 }
 .index .me-aside .bianji span{
     margin-right: 5px;
+}
+.index .me-aside form{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.index .me-aside  form textarea{
+    width:100%;
+    height:125px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding:5px 10px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    display:inline-block;
+    vertical-align: top;
+    outline-style: none;
+    resize: none;
+    font-size:13px;
+}
+.index .me-aside form input{
+    padding:5px 20px;
+    font-size: 14px;
+    border: 1px solid #42c02e;
+    background-color: #fff;
+    color: #42c02e !important;
+    border-radius: 20px;
+}
+.index .me-aside form a{
+    margin-left: 10px;
+    font-size: 14px;
+    color:#969696;
+    vertical-align: middle;
+    line-height: 34px;
 }
 .index .me-aside .gzxh a{
     font-size: 14px;

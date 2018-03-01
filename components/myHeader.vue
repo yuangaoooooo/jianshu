@@ -24,7 +24,7 @@
                     <div class="drop-menu" v-show="userShow">
                         <ul>
                             <li>
-                                <nuxt-link to="/me">
+                                <nuxt-link to="/u/123">
                                     <i class="fa fa-home"></i>
                                     我的主页
                                 </nuxt-link>
@@ -247,6 +247,7 @@
         box-shadow: 0 0 8px rgba(0,0,0,.1);
         font-size: 15px;
         background: #fff;
+        z-index: 999;
     }
     nav .user .drop-menu ul{
         padding: 10px 0;
