@@ -71,9 +71,11 @@
 .main{
     margin: 0 auto;
     padding-top: 30px;
+    position: relative;
 }
 .aside{
-    float: left;
+    position: absolute;
+    top: 40px;
 }
 .aside ul a{
     height: auto;

@@ -8,7 +8,7 @@
                 </nuxt-link>
                 <!-- 写文章 -->
                 <nuxt-link class="btn write-btn" to="/create">
-                    <i class="fa fa-edit"></i>写文章
+                    <i class="fa fa-pencil"></i>写文章
                 </nuxt-link>
                 <!-- 登录注册按钮 -->
                 <nuxt-link to="/sign-up" class="btn sign-up">注册</nuxt-link>
@@ -17,7 +17,7 @@
                 <!-- 如果用户登录那么显示用户头像 -->
                 <div class="user" style="display:block"  @mouseover="userShow=true" @mouseleave="userShow=false">
                     <div class="drop-down">
-                        <nuxt-link class="avatar" to="/user">
+                        <nuxt-link class="avatar" to="/u/123">
                             <img src="../assets/img/default-avatar.jpg" alt="">
                         </nuxt-link>
                     </div>
@@ -143,6 +143,14 @@
             isshow:function(){
                 this.notifyShow=false;
             }
+        },
+        mounted:function(){
+            var lis =document.querySelectorAll(".nav-list li");
+            console.log(lis);
+            for(var i=0;i<lis.length;i++){
+                
+            }
+            
         }
     }
 </script>

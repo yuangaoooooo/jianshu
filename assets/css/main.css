@@ -761,7 +761,7 @@ ul,ol,dl {
     width: 100px;
     box-shadow: none;
 }
-.follow{
+/* .follow{
     color: #ffffff !important;
     font-size: 12px;
     border-radius: 20px;
@@ -776,7 +776,7 @@ ul,ol,dl {
     border-radius: 20px;
     padding:1px 8px 1px 6px;
     background: none;
-}
+} */
 .person .main .main-top .btn-hollow {
     padding: 8px 0;
     width: 90px;

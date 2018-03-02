@@ -46,138 +46,65 @@
                     <nuxt-link to="/" class="tougao anniu">投稿</nuxt-link>
                 </div>
             </div>
-            <div class="">
-                <el-tabs>
-                    <el-tab-pane>
-                        <span slot="label"><i class="fa fa-file-text "></i>最新收录</span>
-                        <div class="content">
-                            <div class="author">
-                                <nuxt-link class="avatar" to="/u/123">
-                                    <img src="../../assets/img/default-avatar.jpg" alt="">                                          
-                                </nuxt-link>
-                                <div class="info">
-                                    <nuxt-link to="/u/123" class="nickname">
-                                        用户
-                                    </nuxt-link>
-                                    <span class="time">
-                                        20：00
-                                    </span>
-                                </div>
-                            </div>
-                            <nuxt-link class="title" to="/p/123">
-                                如何把书中的知识转化成能力？这是我见过的最好回答
-                            </nuxt-link>
-                            <p class="abstract">
-                                随着知识经济的兴起，读书的重要性得到了大家的普遍认同，于是市场上出现很多读书方法，比如速度、多读、慢读、列读......不管你采用哪一种读书方法，最终都要回归到“行动”二字上，正如陆...
-                            </p>
-                            <div class="meta">
-                                <nuxt-link to="/p/123">
-                                    <i class="fa fa-eye"></i>
-                                    2590
-                                </nuxt-link>
-                                <nuxt-link to="/p/123">
-                                    <i class="fa fa-comment"></i>
-                                    500
-                                </nuxt-link>
-                                <span>
-                                    <i class="fa fa-heart"></i>
-                                    539
-                                </span>
-                            </div>
-                        </div>
-                    </el-tab-pane>
-                    <el-tab-pane>
-                        <span slot="label"><i class="fa fa-comments"></i>最新评论</span>
-                        <div class="content">
-                            <div class="author">
-                                <nuxt-link class="avatar" to="/u/123">
-                                    <img src="../../assets/img/default-avatar.jpg" alt="">                                          
-                                </nuxt-link>
-                                <div class="info">
-                                    <nuxt-link to="/u/123" class="nickname">
-                                        用户
-                                    </nuxt-link>
-                                    <span class="time">
-                                        20：00
-                                    </span>
-                                </div>
-                            </div>
-                            <nuxt-link class="title" to="/p/123">
-                                如何把书中的知识转化成能力？这是我见过的最好回答
-                            </nuxt-link>
-                            <p class="abstract">
-                                随着知识经济的兴起，读书的重要性得到了大家的普遍认同，于是市场上出现很多读书方法，比如速度、多读、慢读、列读......不管你采用哪一种读书方法，最终都要回归到“行动”二字上，正如陆...
-                            </p>
-                            <div class="meta">
-                                <nuxt-link to="/p/123">
-                                    <i class="fa fa-eye"></i>
-                                    2590
-                                </nuxt-link>
-                                <nuxt-link to="/p/123">
-                                    <i class="fa fa-comment"></i>
-                                    500
-                                </nuxt-link>
-                                <span>
-                                    <i class="fa fa-heart"></i>
-                                    539
-                                </span>
-                            </div>
-                        </div>
-                    </el-tab-pane>
-                    <el-tab-pane>
-                        <span slot="label"><i class="fa fa-trophy"></i>热门</span>
-                        <div class="content">
-                            <div class="author">
-                                <nuxt-link class="avatar" to="/u/123">
-                                    <img src="../../assets/img/default-avatar.jpg" alt="">                                          
-                                </nuxt-link>
-                                <div class="info">
-                                    <nuxt-link to="/u/123" class="nickname">
-                                        用户
-                                    </nuxt-link>
-                                    <span class="time">
-                                        20：00
-                                    </span>
-                                </div>
-                            </div>
-                            <nuxt-link class="title" to="/p/123">
-                                如何把书中的知识转化成能力？这是我见过的最好回答
-                            </nuxt-link>
-                            <p class="abstract">
-                                随着知识经济的兴起，读书的重要性得到了大家的普遍认同，于是市场上出现很多读书方法，比如速度、多读、慢读、列读......不管你采用哪一种读书方法，最终都要回归到“行动”二字上，正如陆...
-                            </p>
-                            <div class="meta">
-                                <nuxt-link to="/p/123">
-                                    <i class="fa fa-eye"></i>
-                                    2590
-                                </nuxt-link>
-                                <nuxt-link to="/p/123">
-                                    <i class="fa fa-comment"></i>
-                                    500
-                                </nuxt-link>
-                                <span>
-                                    <i class="fa fa-heart"></i>
-                                    539
-                                </span>
-                            </div>
-                        </div>    
-                    </el-tab-pane>
-                </el-tabs>
+            <ul class="trigger-menu">
+                <li :class="{active:currentTab == 'MyArticle'}">
+                    <a href="javascript:void(0)" @click="toggleTab('MyArticle')">
+                        <i class="fa fa-file-text"></i>
+                        文章
+                    </a>
+                </li>
+                <li :class="{active:currentTab == 'MyNew'}">
+                    <a href="javascript:void(0)" @click="toggleTab('MyNew')">
+                        <i class="fa fa-bell"></i>
+                        动态
+                    </a>
+                </li>
+                <li :class="{active:currentTab == 'MyComment'}">
+                    <a href="javascript:void(0)" @click="toggleTab('MyComment')">
+                        <i class="fa fa-comments"></i>
+                        最新评论
+                    </a>
+                </li>
+                <li :class="{active:currentTab == 'MyHot'}">
+                    <a href="javascript:void(0)" @click="toggleTab('MyHot')">
+                        <i class="fa fa-fire"></i>
+                        热门
+                    </a>
+                </li>
+            </ul>
+            <div id="list-container">
+                <!--动态组件-->
+                <component :is="currentTab" keep-alive></component>
             </div>
+            <a href="javascript:;" class="read-more">
+                阅读更多
+            </a>
         </div>
     </div>
 </template>
 <script>
+    import MyArticle from '@/components/user/MyArticle'
+    import MyNew from '@/components/user/MyNew'
+    import MyComment from '@/components/user/MyComment'
+    import MyHot from '@/components/user/MyHot'
     export default {
         name:'dushu',
         components:{
-            
+            MyArticle,
+            MyNew,
+            MyHot,
+            MyComment
         },
         data () {
             return {
-                
+                currentTab:'MyArticle',
             }
         },
+        methods: {
+            toggleTab:function(tab){
+                this.currentTab = tab;
+            },
+        }
 
     }
 </script>
@@ -447,5 +374,17 @@
 }
  .content .meta a{
     margin-right: 10px;
+}
+.read-more{
+    width: 100%;
+    height: 40px;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #a5a5a5;
+    display: block;
 }
 </style>
