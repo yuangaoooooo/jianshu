@@ -60,24 +60,24 @@
                 <!-- 导航 -->
                 <div class="my-container">
                     <ul class="nav-list">
-                        <li class="active">
-                            <nuxt-link to="/" >
+                        <li>
+                            <nuxt-link to="/":class="{active:this.path==''}">
                                 <i class="fa fa-compass"></i>
-                                <span>发现</span>
+                                <span class="active">发现</span>
                                 
                             </nuxt-link>
                         </li>
-                        <li>
-                            <nuxt-link to="/cared/qyq">
+                        <li class="">
+                            <nuxt-link to="/cared/qyq" :class="{active:path=='cared'}">
                                 <i class="fa fa-columns"></i>
-                                <span>关注</span>
+                                <span class="">关注</span>
                                 
                             </nuxt-link>
                         </li>
                         <li class="notify" @mouseover="notifyShow=true" @mouseleave="notifyShow=false">
-                            <nuxt-link to="/message/pinlun">
+                            <nuxt-link to="/message/pinlun" :class="{active:path=='message'}">
                                 <i class="fa fa-bell-o"></i>
-                                <span>消息</span>    
+                                <span class="">消息</span>    
                             </nuxt-link>
                             <div class="drop-menu" v-show="notifyShow" @click="isshow">
                                 <ul>
@@ -137,21 +137,28 @@
                 userShow:false,
                 notifyShow:false,
                 bgShow:false,
+                path:[],
             }
+        },
+        mounted:function(){
+            this.path = this.$route.path.split("/")[1];
+            console.log(this.path);
         },
         methods:{
             isshow:function(){
                 this.notifyShow=false;
-            }
+            },
+            // active:function(index){
+            //     var lis =document.querySelectorAll(".nav-list li");
+            //     for(var i=0;i<lis.length;i++){
+            //         if(i == index){
+            //             lis[i].classList.add("active");
+            //         }else{
+            //             lis[i].classList.remove("active");
+            //         }
+            //     }
+            // },
         },
-        mounted:function(){
-            var lis =document.querySelectorAll(".nav-list li");
-            console.log(lis);
-            for(var i=0;i<lis.length;i++){
-                
-            }
-            
-        }
     }
 </script>
 <style scoped>
@@ -307,8 +314,8 @@
         font-size: 22px;
         text-align: center;
     }
-    nav .nav-list>li.active{
-        color: #ea6f5a;
+    nav .nav-list>li>a.active{
+        color: #ea6f5a !important;
         background: #fff;
     }
 

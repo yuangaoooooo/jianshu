@@ -266,6 +266,7 @@
     z-index: 1000;
     border: 1px solid #eaeaea;
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    padding: 5px 0px;
 }
 .kuai ul li{
     padding: 5px 20px;
@@ -320,6 +321,7 @@
     z-index: 1000;
     border: 1px solid #eaeaea;
     box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    padding: 5px 0;
 }
 .two .chat-top div ul li{
     padding: 5px 20px;

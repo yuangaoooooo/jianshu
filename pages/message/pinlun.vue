@@ -376,12 +376,10 @@
     animation: loading2 1s ease-in-out -.5s infinite;
 }
 .con-placeholder .neiron{
-    width: 200px;
+    width: 150px;
     height: 20px;
     background-color: #eaeaea;
     margin: 10px 0;
-    animation: loading2 1s ease-in-out infinite;
-
 }
 .con-placeholder .meta{
     color: #eaeaea;
